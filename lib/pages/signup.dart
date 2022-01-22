@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:thoughtify/helpers/tokens.dart';
 import 'package:twilio_phone_verify/twilio_phone_verify.dart';
 
 class Signup extends StatefulWidget {
@@ -40,7 +39,6 @@ class _SignupState extends State<Signup> {
   }
 
   void validateInfo(String? password, String email, String? name, String phoneNum, String role) async {
-    //TODO: save user's info to the database
     if (password != null && password.length < 6) {
       Navigator.popAndPushNamed(context, "/signupErrorPass");
     }
@@ -51,15 +49,13 @@ class _SignupState extends State<Signup> {
 
     bool valid = false;
 
-
-
-    if (password != null && email != null && name != null
-        && password != "" && email != "" && name != "") {
+    if (password != null && email != null && name != null && phoneNum != null
+        && phoneNum != "" && password != "" && email != "" && name != "") {
       TwilioPhoneVerify _twilioPhoneVerify;
-      _twilioPhoneVerify = TwilioPhoneVerify(
-          accountSid: Tokens.accountSID,
-          authToken: Tokens.authToken,
-          serviceSid: Tokens.serviceSID
+      _twilioPhoneVerify = TwilioPhoneVerify (
+          accountSid: 'AC67d74e685d9b768a106bbf7bd9741107', // replace with Account SID
+          authToken: '460bd1af9ef0640111620df23c6123f3',  // replace with Auth Token
+          serviceSid: 'VA656f6bedb996e6454ee9bb4d21d7438a' // replace with Service SID
       );
       var twilioResponse =
       await _twilioPhoneVerify.sendSmsCode(phoneNum);
@@ -116,7 +112,6 @@ class _SignupState extends State<Signup> {
                     } else {
                        print(twilioResponse.errorMessage);
                     }
-
       try {
         UserCredential userCredential =
         await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
@@ -124,6 +119,7 @@ class _SignupState extends State<Signup> {
         users.add({
           'email': email,
           'name': name,
+          'phone': phoneNum,
           'role': role
         });
         valid = true;
