@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -32,15 +33,22 @@ class _SignupState extends State<Signup> {
     super.initState();
   }
 
-  void validateInfo(String? password, String? email, String? name, String? role) async {
+  void validateInfo(String? password, String? email, String? name, String role) async {
     //TODO: save user's info to the database
     bool valid = false;
+
 
     if (password != null && email != null && name != null
         && password != "" && email != "" && name != "") {
       try {
         UserCredential userCredential =
         await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
+        CollectionReference users = FirebaseFirestore.instance.collection('users');
+        users.add({
+          'email': email,
+          'name': name,
+          'role': role
+        });
         valid = true;
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
@@ -49,12 +57,15 @@ class _SignupState extends State<Signup> {
           // TODO do something
         }
         valid = false;
+      } catch (e) {
+        valid = false;
       }
     }
 
 
 
     if (valid == true) {
+      print("USER CREATED");
       Navigator.pushNamed(context, "/");
     } else {
       Navigator.popAndPushNamed(context, "/signupError");
