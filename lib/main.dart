@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         "/signupErrorEmail": (context) => Signup(errorState: 2),
         "/signupErrorPass": (context) => Signup(errorState: 3),
         "/student_home": (context) => StudentHome(),
-        "/application": (context) => Application(post: Post(User("default@default.com", "default", "Default Default", "Professor"), "default description")),
+        "/application": (context) => Application(post: Post(User("default@default.com", "default", "Default Default", "Professor", "+15555555555"), "default description")),
       }
     );
   }

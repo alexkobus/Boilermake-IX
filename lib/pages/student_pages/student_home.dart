@@ -20,8 +20,8 @@ class _StudentHomeState extends State<StudentHome> {
 
   void getPostList() async {
     //TODO: get the post list from the database
-    User profA = User("profA@univ.edu", "password", "Professor A", "Professor");
-    User profB = User("profB@univ.edu", "password", "Professor B", "Professor");
+    User profA = User("profA@univ.edu", "password", "Professor A", "Professor", "+12222222222");
+    User profB = User("profB@univ.edu", "password", "Professor B", "Professor", "+13333333333");
     postList.add(Post(profA, "A long descrpition \n with multiple lines \n and information"));
     postList.add(Post(profA, "A long descrpition \n with multiple lines \n and information1"));
     postList.add(Post(profB, "A long descrpition \n with multiple lines \n and information2"));

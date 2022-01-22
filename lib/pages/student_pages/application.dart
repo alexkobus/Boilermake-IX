@@ -10,7 +10,7 @@ class Application extends StatefulWidget {
 }
 
 class _ApplicationState extends State<Application> {
-  User currentUser = User("defaultuser@default.com", "password", "Default User", "Student");
+  User currentUser = User("defaultuser@default.com", "password", "Default User", "Student", "+14444444444");
   final ScrollController _scrollController = ScrollController();
   final wtController = TextEditingController();
   final wcController = TextEditingController();
@@ -54,7 +54,7 @@ class _ApplicationState extends State<Application> {
 
   void getUserInfo() {
     //TODO: get user's information from database
-    currentUser = User("defaultuser@default.com", "password", "Default User", "Student");
+    currentUser = User("defaultuser@default.com", "password", "Default User", "Student", "+14444444444");
   }
 
   void apply(String? name, String? email, String? jobTitle, String? companyName, String? jobDesc,
