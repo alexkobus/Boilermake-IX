@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Signup extends StatefulWidget {
@@ -30,14 +31,27 @@ class _SignupState extends State<Signup> {
     super.initState();
   }
 
-  void validateInfo(String? username, String? password, String? email, String? name, String? role) {
+  void validateInfo(String? username, String? password, String? email, String? name, String? role) async {
     //TODO: check if username conflicts with another & save user's info to the database
     bool valid = false;
 
     if (username != null && password != null && email != null && name != null
         && username != "" && password != "" && email != "" && name != "") {
-      valid = true;
+      try {
+        UserCredential userCredential =
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
+        valid = true;
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          // TODO do something
+        } else if (e.code == 'email-already-in-use') {
+          // TODO do something
+        }
+        valid = false;
+      }
     }
+
+
 
     if (valid == true) {
       Navigator.pushNamed(context, "/");

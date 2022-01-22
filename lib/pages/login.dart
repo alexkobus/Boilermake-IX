@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key, required this.errorState}) : super(key: key);
@@ -24,12 +25,21 @@ class _LoginState extends State<Login> {
     super.initState();
   }
 
-  void validateLoginInfo(String? username, String? password) {
-    //TODO: check login info with the database
+  void validateLoginInfo(String? email, String? password) async {
+
+    // TODO - add user to database?
+
     bool valid = false;
 
-    if (username != null && password != null && username != "" && password != "") {
-      valid = true;
+    if (email != null && password != null && email != "" && password != "") {
+
+      try {
+        UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword
+          (email: email, password: password); // TODO unclear where to use this UserCredential
+        valid = true;
+      } on FirebaseAuthException catch (e) {
+        valid = false;
+      }
     }
 
     if (valid == true) {

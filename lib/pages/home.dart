@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-FirebaseFirestore firestore = FirebaseFirestore.instance;
-
 class AddProject extends StatelessWidget {
   final String professorName;
   final String description;
