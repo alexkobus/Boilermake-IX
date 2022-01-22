@@ -31,7 +31,7 @@ class _LoginState extends State<Login> {
     if (email != null && password != null && email != "" && password != "") {
 
       try {
-        UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword
+        await FirebaseAuth.instance.signInWithEmailAndPassword
           (email: email, password: password); // TODO unclear where to use this UserCredential
         valid = true;
       } on FirebaseAuthException catch (e) {
