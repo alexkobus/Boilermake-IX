@@ -1,3 +1,3 @@
 class Resume {
-  late String
+  late String s;
 }
