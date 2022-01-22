@@ -21,31 +21,38 @@ class _LoginState extends State<Login> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Login to Thoughtify"),
-      ),
-
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextField(
-
-            ),
-
-            TextField(
-
-            ),
-
-            ElevatedButton(
-              onPressed: () {
-                Navigator.popAndPushNamed(context, "/default");
-              },
-              child: const Text('Login'),
-            ),
-          ],
+        appBar: AppBar(
+          title: Text("Login to Thoughtify"),
         ),
-      ),
+
+        body: Center(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+              child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const TextField(
+                  decoration: InputDecoration(
+                      helperText: 'Username'
+                  ),
+                ),
+
+                const TextField(
+                  decoration: InputDecoration(
+                      helperText: 'Password'
+                  ),
+                ),
+
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.popAndPushNamed(context, "/default");
+                  },
+                  child: const Text('Login'),
+                ),
+              ],
+            ),
+        )
+    ),
     );
   }
 }
