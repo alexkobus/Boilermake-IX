@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        "/": (context) => MyHomePage(title: 'title',),
+        "/": (context) => AddProject("prof", "desc")
       }
     );
   }
