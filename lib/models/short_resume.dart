@@ -15,8 +15,9 @@ class ShortResume {
 
   late String skills;
   late String linkedInUrl;
-  
+
   late int numJobs;
+  late int numSchools;
 
   ShortResume(
       this.name,
@@ -33,6 +34,7 @@ class ShortResume {
       this.latestSchoolGPA,
       this.skills,
       this.linkedInUrl,
-      this.numJobs
+      this.numJobs,
+      this.numSchools
   );
 }
