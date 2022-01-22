@@ -40,6 +40,7 @@ class MyApp extends StatelessWidget {
         "/signupError": (context) => Signup(errorState: 1),
         "/signupErrorEmail": (context) => Signup(errorState: 2),
         "/signupErrorPass": (context) => Signup(errorState: 3),
+        "/student_home": (context) => StudentHome(),
       }
     );
   }

@@ -74,7 +74,7 @@ class _SignupState extends State<Signup> {
 
     if (valid == true) {
       print("USER CREATED");
-      Navigator.pushNamed(context, "/default");
+      Navigator.pushNamed(context, "/"); //TODO: fix this later
     } else {
       Navigator.popAndPushNamed(context, "/signupError");
     }
