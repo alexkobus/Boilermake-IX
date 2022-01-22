@@ -50,8 +50,8 @@ class _SignupState extends State<Signup> {
     bool valid = false;
 
 
-    if (password != null && email != null && name != null
-        && password != "" && email != "" && name != "") {
+    if (password != null && email != null && name != null && phoneNum != null
+        && phoneNum != "" && password != "" && email != "" && name != "") {
       try {
         UserCredential userCredential =
         await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
@@ -59,6 +59,7 @@ class _SignupState extends State<Signup> {
         users.add({
           'email': email,
           'name': name,
+          'phone': phoneNum,
           'role': role
         });
         valid = true;
