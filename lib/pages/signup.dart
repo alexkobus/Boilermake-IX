@@ -39,7 +39,7 @@ class _SignupState extends State<Signup> {
     super.initState();
   }
 
-  void validateInfo(String? password, String email, String? name, String phoneNum, String role) async {
+  void validateInfo(String? password, String? email, String? name, String phoneNum, String role) async {
     if (password != null && password.length < 6) {
       Navigator.popAndPushNamed(context, "/signupErrorPass");
     }
@@ -78,41 +78,7 @@ class _SignupState extends State<Signup> {
       } else {
         print(twilioResponse.errorMessage);
       }
-        twilioResponse =
-                 await _twilioPhoneVerify.sendEmailCode(email);
-         if (twilioResponse != null && twilioResponse != "");
 
-             if (twilioResponse.successful == true) {
-               //code sent
-             } else {
-                print(twilioResponse.errorMessage);
-             }
-             twilioResponse = await _twilioPhoneVerify.verifyEmailCode(
-                     email: email, code: 'code');
-
-                if (twilioResponse.successful== true) {
-                  if (twilioResponse.verification?.status == VerificationStatus.approved) {
-                     print('Email is approved');
-                  } else {
-                     print('Invalid code');
-                 }
-                } else {
-                    print(twilioResponse.errorMessage);
-                }
-                twilioResponse =
-                        await _twilioPhoneVerify.sendEmailCode(email,channelConfiguration:
-                    EmailChannelConfiguration(
-                        from: "thoughtifytech@gmail.com",
-                        from_name: "Override Name",
-                        template_id: "d-4f7abxxxxxxxxxxxx",
-                		usernameSubstitution: "Foo Bar"
-                    ));
-
-                    if (twilioResponse.successful == true)  {
-                      //code sent
-                    } else {
-                       print(twilioResponse.errorMessage);
-                    }
       try {
         UserCredential userCredential =
         await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
