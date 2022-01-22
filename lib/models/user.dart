@@ -4,5 +4,5 @@ class User{
   late String name;
   late String role;
 
-  User(this.email, this.password);
+  User(this.email, this.password, this.name, this.role);
 }
