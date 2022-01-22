@@ -29,7 +29,7 @@ class _StudentHomeState extends State<StudentHome> {
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         postList.clear();
         for (var doc in snapshot.data!.docs) {
-          postList.add(Post(doc["prof_email"], doc["prof_name"], doc["desc"]));
+          postList.add(Post(doc["prof_email"], doc["prof_name"], doc["title"], doc["desc"]));
         }
 
         return Scaffold(
@@ -56,7 +56,7 @@ class _StudentHomeState extends State<StudentHome> {
                         itemCount: postList.length,
                         itemBuilder: (context, index) {
                           return ListTile(
-                            title: Text(postList[index].profName),
+                            title: Text(postList[index].profName + " - " + postList[index].title),
                             subtitle: Text(postList[index].desc),
                             trailing: ElevatedButton(
                               onPressed: () {
