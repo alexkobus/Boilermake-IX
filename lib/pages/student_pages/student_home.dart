@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:thoughtify/models/post.dart';
 import 'package:thoughtify/models/user.dart';
 
+import 'application.dart';
+
 class StudentHome extends StatefulWidget {
   const StudentHome({Key? key}) : super(key: key);
   _StudentHomeState createState() => _StudentHomeState();
@@ -71,7 +73,7 @@ class _StudentHomeState extends State<StudentHome> {
                         subtitle: Text(postList[index].desc),
                         trailing: ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, "/application");
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>Application(post: postList[index],)));
                           },
                             child: Text("Apply"),
                             ),
