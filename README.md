@@ -1,4 +1,4 @@
-# thoughtify
+# Thoughtify
 
 A new Flutter project.
 
