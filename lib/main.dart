@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:thoughtify/pages/import_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:thoughtify/models/post.dart';
+import 'package:thoughtify/models/user.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,6 +43,7 @@ class MyApp extends StatelessWidget {
         "/signupErrorEmail": (context) => Signup(errorState: 2),
         "/signupErrorPass": (context) => Signup(errorState: 3),
         "/student_home": (context) => StudentHome(),
+        "/application": (context) => Application(post: Post(User("default@default.com", "default", "Default Default", "Professor"), "default description")),
       }
     );
   }

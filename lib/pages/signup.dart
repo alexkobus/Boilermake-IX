@@ -17,6 +17,7 @@ class _SignupState extends State<Signup> {
   final pController = TextEditingController();
   final eController = TextEditingController();
   final nController = TextEditingController();
+  final phController = TextEditingController();
 
   String selectedValue = "Student";
 
@@ -26,6 +27,7 @@ class _SignupState extends State<Signup> {
     pController.dispose();
     eController.dispose();
     nController.dispose();
+    phController.dispose();
     super.dispose();
   }
 
@@ -35,7 +37,7 @@ class _SignupState extends State<Signup> {
     super.initState();
   }
 
-  void validateInfo(String? password, String? email, String? name, String role) async {
+  void validateInfo(String? password, String? email, String? name, String? phoneNum, String role) async {
     //TODO: save user's info to the database
     if (password != null && password.length < 6) {
       Navigator.popAndPushNamed(context, "/signupErrorPass");
@@ -188,6 +190,13 @@ class _SignupState extends State<Signup> {
                       ),
                     ),
 
+                    TextField(
+                      controller: phController,
+                      decoration: const InputDecoration(
+                          helperText: 'Phone Number'
+                      ),
+                    ),
+
                     DropdownButton(
                         value: selectedValue,
                         onChanged: (String? newValue){
@@ -200,7 +209,7 @@ class _SignupState extends State<Signup> {
 
                     ElevatedButton(
                       onPressed: () {
-                        validateInfo(pController.text, eController.text, nController.text, selectedValue);
+                        validateInfo(pController.text, eController.text, nController.text, phController.text, selectedValue);
                       },
                       child: const Text('Sign Up'),
                     ),

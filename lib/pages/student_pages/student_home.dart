@@ -71,7 +71,7 @@ class _StudentHomeState extends State<StudentHome> {
                         subtitle: Text(postList[index].desc),
                         trailing: ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, "/default");
+                            Navigator.pushNamed(context, "/application");
                           },
                             child: Text("Apply"),
                             ),
