@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:thoughtify/helpers/tokens.dart';
 import 'package:twilio_phone_verify/twilio_phone_verify.dart';
 
 class Signup extends StatefulWidget {
@@ -53,9 +54,9 @@ class _SignupState extends State<Signup> {
         && phoneNum != "" && password != "" && email != "" && name != "") {
       TwilioPhoneVerify _twilioPhoneVerify;
       _twilioPhoneVerify = TwilioPhoneVerify (
-          accountSid: 'AC67d74e685d9b768a106bbf7bd9741107', // replace with Account SID
-          authToken: '460bd1af9ef0640111620df23c6123f3',  // replace with Auth Token
-          serviceSid: 'VA656f6bedb996e6454ee9bb4d21d7438a' // replace with Service SID
+          accountSid: Tokens.accountSID,
+          authToken: Tokens.authToken,
+          serviceSid: Tokens.serviceSID
       );
       var twilioResponse =
       await _twilioPhoneVerify.sendSmsCode(phoneNum);
