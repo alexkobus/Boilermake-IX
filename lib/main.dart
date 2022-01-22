@@ -48,6 +48,8 @@ class MyApp extends StatelessWidget {
         "/statusAccepted": (context) => Status(show: 1),
         "/statusInprogress": (context) => Status(show: 2),
         "/statusdenied": (context) => Status(show: 3),
+        "/profile": (context) => Profile(),
+
       }
     );
   }

@@ -27,6 +27,14 @@ class _StatusState extends State<Status> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Application Status"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.assignment_ind),
+            onPressed: () {
+              Navigator.popAndPushNamed(context, "/profile");
+            },
+          ),
+        ],
       ),
 
       body: Center(
