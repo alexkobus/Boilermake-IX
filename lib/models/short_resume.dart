@@ -19,6 +19,8 @@ class ShortResume {
   late int numJobs;
   late int numSchools;
 
+  late Acceptance accepted;
+
   ShortResume(
       this.name,
       this.studentEmail,
@@ -37,4 +39,8 @@ class ShortResume {
       this.numJobs,
       this.numSchools
   );
+}
+
+enum Acceptance {
+  accepted, notAccepted, inReview
 }
