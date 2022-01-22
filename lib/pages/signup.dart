@@ -43,11 +43,11 @@ class _SignupState extends State<Signup> {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
         valid = true;
       } on FirebaseAuthException catch (e) {
-        if (e.code == 'weak-password') {
-          // TODO do something
-        } else if (e.code == 'email-already-in-use') {
-          // TODO do something
-        }
+        // if (e.code == 'weak-password') {
+        //   // TODO do something
+        // } else if (e.code == 'email-already-in-use') {
+        //   // TODO do something
+        // }
         valid = false;
       }
     }
