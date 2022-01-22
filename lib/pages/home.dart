@@ -1,5 +1,36 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+class AddProject extends StatelessWidget {
+  final String professorName;
+  final String description;
+
+  AddProject(this.professorName, this.description);
+
+  @override
+  Widget build(BuildContext context) {
+    CollectionReference projects = FirebaseFirestore.instance.collection('projects');
+
+    Future<void> addProject() {
+      return projects
+          .add({
+            'professor_name': professorName,
+            'description': description
+          })
+          .then((value) => print("User Added"))
+          .catchError((error) => print ("Error adding project: $error"));
+    }
+
+    return TextButton(
+      onPressed: addProject,
+      child: const Text(
+        "Add Project",
+      ),
+    );
+  }
+  
+}
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -76,6 +107,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   .of(context)
                   .textTheme
                   .headline4,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('back'),
             ),
           ],
         ),
