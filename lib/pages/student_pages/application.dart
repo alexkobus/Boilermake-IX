@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:thoughtify/models/post.dart';
-import 'package:thoughtify/models/user.dart';
 
 class Application extends StatefulWidget {
   const Application({Key? key, required this.post}) : super(key: key);
@@ -189,7 +188,7 @@ class _ApplicationState extends State<Application> {
                     TextField(
                       controller: linController,
                       decoration: const InputDecoration(
-                          helperText: 'Linkedin URL'
+                          helperText: 'LinkedIn URL'
                       ),
                     ),
 
