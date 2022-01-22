@@ -31,7 +31,7 @@ class _LoginState extends State<Login> {
     if (email != null && password != null && email != "" && password != "") {
 
       try {
-        UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword
+        await FirebaseAuth.instance.signInWithEmailAndPassword
           (email: email, password: password); // TODO unclear where to use this UserCredential
         valid = true;
       } on FirebaseAuthException catch (e) {
@@ -40,8 +40,8 @@ class _LoginState extends State<Login> {
     }
 
     if (valid == true) {
-      Navigator.pushNamed(context, "/student_home");
-      //TODO: make this go to the homepage of the app
+      Navigator.pushNamed(context, "/verify"); // TODO: get phone num from db and pass it to verify
+      //Navigator.push(context, MaterialPageRoute(builder: (context)=>Verify(phoneNum: phoneNum, errorState: false,)));
     } else {
       Navigator.popAndPushNamed(context, "/loginError");
     }

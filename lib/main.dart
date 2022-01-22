@@ -44,12 +44,14 @@ class MyApp extends StatelessWidget {
         "/signupErrorPass": (context) => Signup(errorState: 3),
         "/signupErrorPhone": (context) => Signup(errorState: 4),
         "/student_home": (context) => StudentHome(),
-        "/application": (context) => Application(post: Post("default@default.com","Professor", "default title", "default description")),
+        "/application": (context) => Application(post: Post("default ID - likely not on Firestore", "default@default.com","Professor", "default title", "default description")),
         "/statusAccepted": (context) => Status(show: 1),
         "/statusInprogress": (context) => Status(show: 2),
         "/statusdenied": (context) => Status(show: 3),
         "/profile": (context) => Profile(),
 
+        "/verify": (context) => Verify(phoneNum: "+12222222222", errorState: false,),
+        "/verifyError": (context) => Verify(phoneNum: "+12222222222", errorState: true),
       }
     );
   }

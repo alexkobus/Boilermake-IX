@@ -30,7 +30,7 @@ class _StudentHomeState extends State<StudentHome> {
         postList.clear();
         if (snapshot.data != null) {
           for (var doc in snapshot.data!.docs) {
-            postList.add(Post(doc["prof_email"], doc["prof_name"], doc["title"], doc["desc"]));
+            postList.add(Post(doc.id, doc["prof_email"], doc["prof_name"], doc["title"], doc["desc"]));
           }
         }
 

@@ -1,4 +1,6 @@
 class ShortResume {
+  late String id;
+
   late String name;
   late String studentEmail;
 
@@ -15,10 +17,14 @@ class ShortResume {
 
   late String skills;
   late String linkedInUrl;
-  
+
   late int numJobs;
+  late int numSchools;
+
+  late Acceptance accepted;
 
   ShortResume(
+      this.id,
       this.name,
       this.studentEmail,
       this.latestJobTitle,
@@ -33,6 +39,11 @@ class ShortResume {
       this.latestSchoolGPA,
       this.skills,
       this.linkedInUrl,
-      this.numJobs
+      this.numJobs,
+      this.numSchools
   );
+}
+
+enum Acceptance {
+  accepted, notAccepted, inReview
 }

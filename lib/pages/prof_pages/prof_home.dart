@@ -5,10 +5,10 @@ import 'package:thoughtify/models/post.dart';
 
 class ProfHome extends StatefulWidget {
   const ProfHome({Key? key}) : super(key: key);
-  _ProfStateHome createState() => _ProfStateHome();
+  _ProfHomeState createState() => _ProfHomeState();
 }
 
-class _ProfStateHome extends State<ProfHome> {
+class _ProfHomeState extends State<ProfHome> {
   final Stream<QuerySnapshot> _postsStream =
     FirebaseFirestore.instance.collection('posts').snapshots();
   List<Post> myPosts = <Post>[];
@@ -24,7 +24,7 @@ class _ProfStateHome extends State<ProfHome> {
             if (post["prof_email"] ==
                 FirebaseAuth.instance.currentUser?.email) {
               myPosts.add(
-                  Post(post["prof_email"], post["prof_name"], post["title"], post["desc"]));
+                  Post(post.id, post["prof_email"], post["prof_name"], post["title"], post["desc"]));
             }
           }
 
