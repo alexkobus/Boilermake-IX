@@ -56,7 +56,8 @@ class _ApplicationState extends State<Application> {
 
     //TODO: send application info to database
 
-    Navigator.pushNamed(context, "/default");
+    //TODO: get application status from db
+    Navigator.pushNamed(context, "/statusInprogress");
   }
 
   @override
