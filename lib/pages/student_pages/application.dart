@@ -12,18 +12,36 @@ class Application extends StatefulWidget {
 class _ApplicationState extends State<Application> {
   User currentUser = User("defaultuser@default.com", "password", "Default User", "Student");
   final ScrollController _scrollController = ScrollController();
-  final eController = TextEditingController(text: "email");
-  final pController = TextEditingController();
-  final nController = TextEditingController();
-
-  String selectedValue = "Student";
+  final wtController = TextEditingController();
+  final wcController = TextEditingController();
+  final wdController = TextEditingController();
+  final wsdController = TextEditingController();
+  final wedController = TextEditingController();
+  final uController = TextEditingController();
+  final usdController = TextEditingController();
+  final uedController = TextEditingController();
+  final udController = TextEditingController();
+  final umController = TextEditingController();
+  final gpaController = TextEditingController();
+  final sController = TextEditingController();
+  final linController = TextEditingController();
 
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
-    pController.dispose();
-    eController.dispose();
-    nController.dispose();
+    wtController.dispose();
+    wcController.dispose();
+    wdController.dispose();
+    wsdController.dispose();
+    wedController.dispose();
+    uController.dispose();
+    usdController.dispose();
+    uedController.dispose();
+    udController.dispose();
+    umController.dispose();
+    gpaController.dispose();
+    sController.dispose();
+    linController.dispose();
     super.dispose();
   }
 
@@ -39,7 +57,10 @@ class _ApplicationState extends State<Application> {
     currentUser = User("defaultuser@default.com", "password", "Default User", "Student");
   }
 
-  void apply() {
+  void apply(String? name, String? email, String? jobTitle, String? companyName, String? jobDesc,
+      String? jobSDate, String? jobEDate, String? univName, String? univSDate, String? univEDate,
+      String? degreeType, String? major, String? gpa, String? skills, String? linURL) {
+
     //TODO: send application info to database
 
     Navigator.pushNamed(context, "/default");
@@ -60,7 +81,7 @@ class _ApplicationState extends State<Application> {
 
       body: Center(
           child: Padding(
-              padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+              padding: const EdgeInsets.fromLTRB(15, 10, 15, 0),
               child: SingleChildScrollView(
                 controller: _scrollController,
                 child: Column(
@@ -87,9 +108,102 @@ class _ApplicationState extends State<Application> {
                       ),
                     ),
 
+                    TextField(
+                      controller: wtController,
+                      decoration: const InputDecoration(
+                          helperText: 'Work Experience: Job Title'
+                      ),
+                    ),
+
+                    TextField(
+                      controller: wcController,
+                      decoration: const InputDecoration(
+                          helperText: 'Work Experience: Company Name'
+                      ),
+                    ),
+
+                    TextField(
+                      controller: wdController,
+                      decoration: const InputDecoration(
+                          helperText: 'Work Experience: Description'
+                      ),
+                    ),
+
+                    TextField(
+                      controller: wsdController,
+                      decoration: const InputDecoration(
+                          helperText: 'Work Experience: Start Date'
+                      ),
+                    ),
+
+                    TextField(
+                      controller: wedController,
+                      decoration: const InputDecoration(
+                          helperText: 'Work Experience: End Date'
+                      ),
+                    ),
+
+                    TextField(
+                      controller: uController,
+                      decoration: const InputDecoration(
+                          helperText: 'Education: School Name'
+                      ),
+                    ),
+
+                    TextField(
+                      controller: usdController,
+                      decoration: const InputDecoration(
+                          helperText: 'Education: Start Date'
+                      ),
+                    ),
+
+                    TextField(
+                      controller: uedController,
+                      decoration: const InputDecoration(
+                          helperText: 'Education: Graduation Date'
+                      ),
+                    ),
+
+                    TextField(
+                      controller: udController,
+                      decoration: const InputDecoration(
+                          helperText: 'Education: Degree'
+                      ),
+                    ),
+
+                    TextField(
+                      controller: umController,
+                      decoration: const InputDecoration(
+                          helperText: 'Education: Major'
+                      ),
+                    ),
+
+                    TextField(
+                      controller: gpaController,
+                      decoration: const InputDecoration(
+                          helperText: 'Education: GPA'
+                      ),
+                    ),
+
+                    TextField(
+                      controller: sController,
+                      decoration: const InputDecoration(
+                          helperText: 'Skills'
+                      ),
+                    ),
+
+                    TextField(
+                      controller: linController,
+                      decoration: const InputDecoration(
+                          helperText: 'Linkedin URL'
+                      ),
+                    ),
+
                     ElevatedButton(
                       onPressed: () {
-                        apply();
+                        apply(currentUser.name, currentUser.email, wtController.text, wcController.text, wdController.text,
+                        wsdController.text, wedController.text, uController.text, usdController.text, uedController.text,
+                        udController.text, umController.text, gpaController.text, sController.text, linController.text);
                       },
                       child: const Text('Send Application'),
                     ),
