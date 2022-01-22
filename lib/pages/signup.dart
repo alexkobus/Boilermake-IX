@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:twilio_phone_verify/twilio_phone_verify.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key, required this.errorState}) : super(key: key);
@@ -37,7 +38,7 @@ class _SignupState extends State<Signup> {
     super.initState();
   }
 
-  void validateInfo(String? password, String? email, String? name, String? phoneNum, String role) async {
+  void validateInfo(String? password, String email, String? name, String phoneNum, String role) async {
     //TODO: save user's info to the database
     if (password != null && password.length < 6) {
       Navigator.popAndPushNamed(context, "/signupErrorPass");
@@ -50,8 +51,71 @@ class _SignupState extends State<Signup> {
     bool valid = false;
 
 
+
     if (password != null && email != null && name != null
         && password != "" && email != "" && name != "") {
+      TwilioPhoneVerify _twilioPhoneVerify;
+      _twilioPhoneVerify = TwilioPhoneVerify(
+          accountSid: 'AC67d74e685d9b768a106bbf7bd9741107', // replace with Account SID
+          authToken: '460bd1af9ef0640111620df23c6123f3',  // replace with Auth Token
+          serviceSid: 'VA656f6bedb996e6454ee9bb4d21d7438a' // replace with Service SID
+      );
+      var twilioResponse =
+      await _twilioPhoneVerify.sendSmsCode(phoneNum);
+
+      if (twilioResponse.successful== true)  {
+        //code sent
+      } else {
+           print(twilioResponse.errorMessage);
+      }
+      twilioResponse = await _twilioPhoneVerify.verifySmsCode(
+          phone: phoneNum, code: 'code');
+
+      if (twilioResponse.successful== true) {
+        if (twilioResponse.verification?.status == VerificationStatus.approved) {
+          print('Phone number is approved');
+        } else {
+           print('Invalid code');
+        }
+      } else {
+        print(twilioResponse.errorMessage);
+      }
+        twilioResponse =
+                 await _twilioPhoneVerify.sendEmailCode(email);
+         if (twilioResponse != null && twilioResponse != "");
+
+             if (twilioResponse.successful == true) {
+               //code sent
+             } else {
+                print(twilioResponse.errorMessage);
+             }
+             twilioResponse = await _twilioPhoneVerify.verifyEmailCode(
+                     email: email, code: 'code');
+
+                if (twilioResponse.successful== true) {
+                  if (twilioResponse.verification?.status == VerificationStatus.approved) {
+                     print('Email is approved');
+                  } else {
+                     print('Invalid code');
+                 }
+                } else {
+                    print(twilioResponse.errorMessage);
+                }
+                twilioResponse =
+                        await _twilioPhoneVerify.sendEmailCode(email,channelConfiguration:
+                    EmailChannelConfiguration(
+                        from: "thoughtifytech@gmail.com",
+                        from_name: "Override Name",
+                        template_id: "d-4f7abxxxxxxxxxxxx",
+                		usernameSubstitution: "Foo Bar"
+                    ));
+
+                    if (twilioResponse.successful == true)  {
+                      //code sent
+                    } else {
+                       print(twilioResponse.errorMessage);
+                    }
+
       try {
         UserCredential userCredential =
         await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
