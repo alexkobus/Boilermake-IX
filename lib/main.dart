@@ -36,8 +36,10 @@ class MyApp extends StatelessWidget {
         "/": (context) => Login(errorState: false),
         "/default": (context) => MyHomePage(title: "default"),
         "/loginError": (context) => Login(errorState: true),
-        "/signup": (context) => Signup(errorState: false),
-        "/signupError": (context) => Signup(errorState: true),
+        "/signup": (context) => Signup(errorState: 0),
+        "/signupError": (context) => Signup(errorState: 1),
+        "/signupErrorEmail": (context) => Signup(errorState: 2),
+        "/signupErrorPass": (context) => Signup(errorState: 3),
       }
     );
   }

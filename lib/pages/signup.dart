@@ -5,12 +5,15 @@ import 'package:flutter/material.dart';
 class Signup extends StatefulWidget {
   const Signup({Key? key, required this.errorState}) : super(key: key);
   _SignupState createState() => _SignupState();
-  final bool errorState;
+  final int errorState;
+  //0 = no error
+  //1 = Invalid Information
+  //2 = Email Error
+  //3 = Weak Password
 }
 
 class _SignupState extends State<Signup> {
   final ScrollController _scrollController = ScrollController();
-  final uController = TextEditingController();
   final pController = TextEditingController();
   final eController = TextEditingController();
   final nController = TextEditingController();
@@ -20,7 +23,6 @@ class _SignupState extends State<Signup> {
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
-    uController.dispose();
     pController.dispose();
     eController.dispose();
     nController.dispose();
@@ -35,6 +37,14 @@ class _SignupState extends State<Signup> {
 
   void validateInfo(String? password, String? email, String? name, String role) async {
     //TODO: save user's info to the database
+    if (password != null && password.length < 6) {
+      Navigator.popAndPushNamed(context, "/signupErrorPass");
+    }
+
+    if (email != null && !RegExp(".+@.+\..+").hasMatch(email)) {
+      Navigator.popAndPushNamed(context, "/signupErrorEmail");
+    }
+
     bool valid = false;
 
 
@@ -51,18 +61,16 @@ class _SignupState extends State<Signup> {
         });
         valid = true;
       } on FirebaseAuthException catch (e) {
-        if (e.code == 'weak-password') {
-          // TODO do something
-        } else if (e.code == 'email-already-in-use') {
-          // TODO do something
-        }
+        // if (e.code == 'weak-password') {
+        //   // TODO do something
+        // } else if (e.code == 'email-already-in-use') {
+        //   // TODO do something
+        // }
         valid = false;
       } catch (e) {
         valid = false;
       }
     }
-
-
 
     if (valid == true) {
       print("USER CREATED");
@@ -104,8 +112,56 @@ class _SignupState extends State<Signup> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
-                      child: (widget.errorState)
+                      child: (widget.errorState == 1)
                           ? const Text("Invalid Information",
+                        style: TextStyle(color: Colors.red),
+                      )
+                          : null,
+                    ),
+
+                    Container(
+                      child: (widget.errorState == 2)
+                          ? const Text("Invalid Email Address:",
+                        style: TextStyle(color: Colors.red),
+                      )
+                          : null,
+                    ),
+
+                    Container(
+                      child: (widget.errorState == 2)
+                          ? const SizedBox(
+                            height: 10,
+                          )
+                          : null,
+                    ),
+
+                    Container(
+                      child: (widget.errorState == 2)
+                          ? const Text("Email address must be in the format",
+                        style: TextStyle(color: Colors.red),
+                      )
+                          : null,
+                    ),
+
+                    Container(
+                      child: (widget.errorState == 2)
+                          ? const Text("\"email@example.com\"",
+                        style: TextStyle(color: Colors.red),
+                      )
+                          : null,
+                    ),
+
+                    Container(
+                      child: (widget.errorState == 3)
+                          ? const Text("Invalid Password:",
+                        style: TextStyle(color: Colors.red),
+                      )
+                          : null,
+                    ),
+
+                    Container(
+                      child: (widget.errorState == 3)
+                          ? const Text("Password must be at least 6 characters long.",
                         style: TextStyle(color: Colors.red),
                       )
                           : null,
