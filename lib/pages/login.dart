@@ -40,8 +40,7 @@ class _LoginState extends State<Login> {
     }
 
     if (valid == true) {
-      Navigator.pushNamed(context, "/student_home");
-      //TODO: make this go to the homepage of the app
+      Navigator.pushNamed(context, "/verify");
     } else {
       Navigator.popAndPushNamed(context, "/loginError");
     }

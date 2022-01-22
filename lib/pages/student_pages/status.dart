@@ -1,26 +1,19 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:thoughtify/helpers/tokens.dart';
-import 'package:twilio_phone_verify/twilio_phone_verify.dart';
 
 class Status extends StatefulWidget {
 
   const Status({Key? key, required this.show}) : super(key: key);
   _StatusState createState() => _StatusState();
   final int show;
-//1 = Accepted
-//2 = In progress
-//3 = Denied
+  //1 = Accepted
+  //2 = In progress
+  //3 = Denied
 }
 
 class _StatusState extends State<Status> {
   final ScrollController _scrollController = ScrollController();
 
   get height => null;
-
-
-
 
   @override
   Widget build(BuildContext context) {
