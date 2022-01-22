@@ -8,6 +8,7 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
+  final ScrollController _scrollController = ScrollController();
   final uController = TextEditingController();
   final pController = TextEditingController();
   final eController = TextEditingController();
@@ -31,12 +32,12 @@ class _SignupState extends State<Signup> {
     super.initState();
   }
 
-  void validateInfo(String? username, String? password, String? email, String? name, String? role) async {
-    //TODO: check if username conflicts with another & save user's info to the database
+  void validateInfo(String? password, String? email, String? name, String? role) async {
+    //TODO: save user's info to the database
     bool valid = false;
 
-    if (username != null && password != null && email != null && name != null
-        && username != "" && password != "" && email != "" && name != "") {
+    if (password != null && email != null && name != null
+        && password != "" && email != "" && name != "") {
       try {
         UserCredential userCredential =
         await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
@@ -85,64 +86,59 @@ class _SignupState extends State<Signup> {
 
       body: Center(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  child: (widget.errorState)
-                      ? const Text("Invalid Information",
-                    style: TextStyle(color: Colors.red),
-                  )
-                      : null,
-                ),
+              padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+              child: SingleChildScrollView(
+                controller: _scrollController,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      child: (widget.errorState)
+                          ? const Text("Invalid Information",
+                        style: TextStyle(color: Colors.red),
+                      )
+                          : null,
+                    ),
 
-                TextField(
-                  controller: uController,
-                  decoration: const InputDecoration(
-                      helperText: 'Username'
-                  ),
-                ),
+                    TextField(
+                      controller: eController,
+                      decoration: const InputDecoration(
+                          helperText: 'Email Address'
+                      ),
+                    ),
 
-                TextField(
-                  controller: pController,
-                  decoration: const InputDecoration(
-                      helperText: 'Password'
-                  ),
-                ),
+                    TextField(
+                      controller: pController,
+                      decoration: const InputDecoration(
+                          helperText: 'Password'
+                      ),
+                    ),
 
-                TextField(
-                  controller: eController,
-                  decoration: const InputDecoration(
-                      helperText: 'Email Address'
-                  ),
-                ),
+                    TextField(
+                      controller: nController,
+                      decoration: const InputDecoration(
+                          helperText: 'Name'
+                      ),
+                    ),
 
-                TextField(
-                  controller: nController,
-                  decoration: const InputDecoration(
-                      helperText: 'Name'
-                  ),
-                ),
+                    DropdownButton(
+                        value: selectedValue,
+                        onChanged: (String? newValue){
+                          setState(() {
+                            selectedValue = newValue!;
+                          });
+                        },
+                        items: dropdownItems
+                    ),
 
-                DropdownButton(
-                    value: selectedValue,
-                    onChanged: (String? newValue){
-                      setState(() {
-                        selectedValue = newValue!;
-                      });
-                    },
-                    items: dropdownItems
-                ),
-
-                ElevatedButton(
-                  onPressed: () {
-                    validateInfo(uController.text, pController.text, eController.text, nController.text, selectedValue);
-                  },
-                  child: const Text('Sign Up'),
-                ),
-              ],
-            ),
+                    ElevatedButton(
+                      onPressed: () {
+                        validateInfo(pController.text, eController.text, nController.text, selectedValue);
+                      },
+                      child: const Text('Sign Up'),
+                    ),
+                  ],
+                ),)
           )
       ),
     );

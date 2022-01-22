@@ -26,9 +26,6 @@ class _LoginState extends State<Login> {
   }
 
   void validateLoginInfo(String? email, String? password) async {
-
-    // TODO - add user to database?
-
     bool valid = false;
 
     if (email != null && password != null && email != "" && password != "") {
@@ -73,7 +70,7 @@ class _LoginState extends State<Login> {
               children: <Widget>[
                 Container(
                   child: (widget.errorState)
-                      ? const Text("Incorrect username or password.",
+                      ? const Text("Incorrect email address or password.",
                     style: TextStyle(color: Colors.red),
                   )
                       : null,
@@ -82,7 +79,7 @@ class _LoginState extends State<Login> {
                 TextField(
                   controller: uController,
                   decoration: const InputDecoration(
-                      helperText: 'Username'
+                      helperText: 'Email Address'
                   ),
                 ),
 
