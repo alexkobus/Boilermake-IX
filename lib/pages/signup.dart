@@ -39,7 +39,6 @@ class _SignupState extends State<Signup> {
   }
 
   void validateInfo(String? password, String email, String? name, String phoneNum, String role) async {
-    //TODO: save user's info to the database
     if (password != null && password.length < 6) {
       Navigator.popAndPushNamed(context, "/signupErrorPass");
     }

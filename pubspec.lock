@@ -251,7 +251,11 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "0.4.3"
+=======
+    version: "0.4.2"
+>>>>>>> 201ba037675733afa9ce8b14ec6d0abdd5a94108
   twilio_phone_verify:
     dependency: "direct main"
     description:
