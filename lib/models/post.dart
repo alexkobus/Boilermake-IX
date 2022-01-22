@@ -1,8 +1,9 @@
 import 'user.dart';
 
 class Post{
-  late User prof;
+  late String profEmail;
+  late String profName;
   late String desc;
 
-  Post(this.prof, this.desc);
+  Post(this.profEmail, this.profName, this.desc);
 }
