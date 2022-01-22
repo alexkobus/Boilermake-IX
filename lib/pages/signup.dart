@@ -2,17 +2,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:thoughtify/helpers/tokens.dart';
+import 'package:thoughtify/pages/verify.dart';
 import 'package:twilio_phone_verify/twilio_phone_verify.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key, required this.errorState}) : super(key: key);
   _SignupState createState() => _SignupState();
   final int errorState;
-  //0 = no error
-  //1 = Invalid Information
-  //2 = Email Error
-  //3 = Weak Password
-  //4 = Invalid Phone Number
+//0 = no error
+//1 = Invalid Information
+//2 = Email Error
+//3 = Weak Password
+//4 = Invalid Phone Number
 }
 
 class _SignupState extends State<Signup> {
@@ -63,26 +64,26 @@ class _SignupState extends State<Signup> {
           authToken: Tokens.authToken,
           serviceSid: Tokens.serviceSID
       );
-      var twilioResponse =
-      await _twilioPhoneVerify.sendSmsCode(phoneNum);
-
-      if (twilioResponse.successful== true)  {
-        //code sent
-      } else {
-           print(twilioResponse.errorMessage);
-      }
-      twilioResponse = await _twilioPhoneVerify.verifySmsCode(
-          phone: phoneNum, code: 'code');
-
-      if (twilioResponse.successful== true) {
-        if (twilioResponse.verification?.status == VerificationStatus.approved) {
-          print('Phone number is approved');
-        } else {
-           print('Invalid code');
-        }
-      } else {
-        print(twilioResponse.errorMessage);
-      }
+      // var twilioResponse =
+      // await _twilioPhoneVerify.sendSmsCode(phoneNum);
+      //
+      // if (twilioResponse.successful== true)  {
+      //   print("code sent");
+      // } else {
+      //   print(twilioResponse.errorMessage);
+      // }
+      // twilioResponse = await _twilioPhoneVerify.verifySmsCode(
+      //     phone: phoneNum, code: 'code');
+      //
+      // if (twilioResponse.successful== true) {
+      //   if (twilioResponse.verification?.status == VerificationStatus.approved) {
+      //     print('Phone number is approved');
+      //   } else {
+      //     print('Invalid code');
+      //   }
+      // } else {
+      //   print(twilioResponse.errorMessage);
+      // }
 
       try {
         UserCredential userCredential =
@@ -110,7 +111,7 @@ class _SignupState extends State<Signup> {
 
     if (valid == true) {
       print("USER CREATED");
-      Navigator.pushNamed(context, "/verify");
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>Verify(phoneNum: phoneNum, errorState: false,)));
     } else {
       Navigator.popAndPushNamed(context, "/signupError");
     }
@@ -160,8 +161,8 @@ class _SignupState extends State<Signup> {
                     Container(
                       child: (widget.errorState == 2)
                           ? const SizedBox(
-                            height: 10,
-                          )
+                        height: 10,
+                      )
                           : null,
                     ),
 

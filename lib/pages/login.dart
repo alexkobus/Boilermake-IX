@@ -40,7 +40,8 @@ class _LoginState extends State<Login> {
     }
 
     if (valid == true) {
-      Navigator.pushNamed(context, "/verify");
+      Navigator.pushNamed(context, "/verify"); // TODO: get phone num from db and pass it to verify
+      //Navigator.push(context, MaterialPageRoute(builder: (context)=>Verify(phoneNum: phoneNum, errorState: false,)));
     } else {
       Navigator.popAndPushNamed(context, "/loginError");
     }

@@ -48,8 +48,8 @@ class MyApp extends StatelessWidget {
         "/statusAccepted": (context) => Status(show: 1),
         "/statusInprogress": (context) => Status(show: 2),
         "/statusdenied": (context) => Status(show: 3),
-        "/verify": (context) => Verify(errorState: false),
-        "/verifyError": (context) => Verify(errorState: true),
+        "/verify": (context) => Verify(phoneNum: "+12222222222", errorState: false,),
+        "/verifyError": (context) => Verify(phoneNum: "+12222222222", errorState: true),
       }
     );
   }
