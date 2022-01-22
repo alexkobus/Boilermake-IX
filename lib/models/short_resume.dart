@@ -1,4 +1,6 @@
 class ShortResume {
+  late String id;
+
   late String name;
   late String studentEmail;
 
@@ -22,6 +24,7 @@ class ShortResume {
   late Acceptance accepted;
 
   ShortResume(
+      this.id,
       this.name,
       this.studentEmail,
       this.latestJobTitle,
