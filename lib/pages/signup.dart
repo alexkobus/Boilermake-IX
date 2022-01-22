@@ -9,12 +9,18 @@ class Signup extends StatefulWidget {
 class _SignupState extends State<Signup> {
   final uController = TextEditingController();
   final pController = TextEditingController();
+  final eController = TextEditingController();
+  final nController = TextEditingController();
+
+  String selectedValue = "Student";
 
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
     uController.dispose();
     pController.dispose();
+    eController.dispose();
+    nController.dispose();
     super.dispose();
   }
 
@@ -24,20 +30,28 @@ class _SignupState extends State<Signup> {
     super.initState();
   }
 
-  void validateLoginInfo(String? username, String? password) {
-    //TODO: check login info with the database
+  void validateInfo(String? username, String? password, String? email, String? name, String? role) {
+    //TODO: check if username conflicts with another & save user's info to the database
     bool valid = false;
 
-    if (username != null && password != null && username != "" && password != "") {
+    if (username != null && password != null && email != null && name != null
+        && username != "" && password != "" && email != "" && name != "") {
       valid = true;
     }
 
     if (valid == true) {
-      Navigator.pushNamed(context, "/default");
-      //TODO: make this go to the homepage of the app
+      Navigator.pushNamed(context, "/");
     } else {
       Navigator.popAndPushNamed(context, "/signupError");
     }
+  }
+
+  List<DropdownMenuItem<String>> get dropdownItems{
+    List<DropdownMenuItem<String>> menuItems = [
+      DropdownMenuItem(child: Text("Student"),value: "Student"),
+      DropdownMenuItem(child: Text("Professor"),value: "Professor"),
+    ];
+    return menuItems;
   }
 
 
@@ -63,7 +77,7 @@ class _SignupState extends State<Signup> {
               children: <Widget>[
                 Container(
                   child: (widget.errorState)
-                      ? const Text("Incorrect username or password.",
+                      ? const Text("Invalid Information",
                     style: TextStyle(color: Colors.red),
                   )
                       : null,
@@ -83,9 +97,33 @@ class _SignupState extends State<Signup> {
                   ),
                 ),
 
+                TextField(
+                  controller: eController,
+                  decoration: const InputDecoration(
+                      helperText: 'Email Address'
+                  ),
+                ),
+
+                TextField(
+                  controller: nController,
+                  decoration: const InputDecoration(
+                      helperText: 'Name'
+                  ),
+                ),
+
+                DropdownButton(
+                    value: selectedValue,
+                    onChanged: (String? newValue){
+                      setState(() {
+                        selectedValue = newValue!;
+                      });
+                    },
+                    items: dropdownItems
+                ),
+
                 ElevatedButton(
                   onPressed: () {
-                    validateLoginInfo(uController.text, pController.text);
+                    validateInfo(uController.text, pController.text, eController.text, nController.text, selectedValue);
                   },
                   child: const Text('Sign Up'),
                 ),
