@@ -32,7 +32,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        "/": (context) => AddProject("prof", "desc")
+        // "/": (context) => AddProject("prof", "desc")
+        "/": (context) => Login(errorState: false),
+        "/default": (context) => MyHomePage(title: "default",),
+        "/loginError": (context) => Login(errorState: true),
       }
     );
   }
