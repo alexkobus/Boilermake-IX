@@ -1,16 +1,46 @@
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
+  const Login({Key? key, required this.errorState}) : super(key: key);
   _LoginState createState() => _LoginState();
+  final bool errorState;
 }
 
 class _LoginState extends State<Login> {
+  final uController = TextEditingController();
+  final pController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    uController.dispose();
+    pController.dispose();
+    super.dispose();
+  }
 
   _LoginState();
 
   void initState() {
     super.initState();
   }
+
+  void validateLoginInfo(String? username, String? password) {
+    //TODO: check login info with the database
+    bool valid = false;
+
+    if (username != null && password != null && username != "" && password != "") {
+      valid = true;
+    }
+
+    if (valid == true) {
+      Navigator.pushNamed(context, "/default");
+      //TODO: make this go to the homepage of the app
+    } else {
+      Navigator.popAndPushNamed(context, "/loginError");
+    }
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -31,21 +61,31 @@ class _LoginState extends State<Login> {
               child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const TextField(
-                  decoration: InputDecoration(
+                Container(
+                  child: (widget.errorState)
+                      ? const Text("Incorrect username or password.",
+                    style: TextStyle(color: Colors.red),
+                  )
+                      : null,
+                ),
+
+                TextField(
+                  controller: uController,
+                  decoration: const InputDecoration(
                       helperText: 'Username'
                   ),
                 ),
 
-                const TextField(
-                  decoration: InputDecoration(
+                TextField(
+                  controller: pController,
+                  decoration: const InputDecoration(
                       helperText: 'Password'
                   ),
                 ),
 
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.popAndPushNamed(context, "/default");
+                    validateLoginInfo(uController.text, pController.text);
                   },
                   child: const Text('Login'),
                 ),

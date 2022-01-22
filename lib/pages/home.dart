@@ -77,6 +77,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   .textTheme
                   .headline4,
             ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('back'),
+            ),
           ],
         ),
       ),
