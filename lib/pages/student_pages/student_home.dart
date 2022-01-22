@@ -46,7 +46,14 @@ class _StudentHomeState extends State<StudentHome> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Student Homepage"),
-        
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.refresh),
+            onPressed: () {
+              Navigator.popAndPushNamed(context, "/student_home");
+            },
+          ),
+        ],
       ),
 
       body: Center(
@@ -62,6 +69,12 @@ class _StudentHomeState extends State<StudentHome> {
                       return ListTile(
                         title: Text(postList[index].prof.name),
                         subtitle: Text(postList[index].desc),
+                        trailing: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, "/application");
+                          },
+                            child: Text("Apply"),
+                            ),
                       );
                     }),)
           )
