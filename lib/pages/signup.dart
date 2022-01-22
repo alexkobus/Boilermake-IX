@@ -12,6 +12,7 @@ class Signup extends StatefulWidget {
   //1 = Invalid Information
   //2 = Email Error
   //3 = Weak Password
+  //4 = Invalid Phone Number
 }
 
 class _SignupState extends State<Signup> {
@@ -44,8 +45,12 @@ class _SignupState extends State<Signup> {
       Navigator.popAndPushNamed(context, "/signupErrorPass");
     }
 
-    if (email != null && !RegExp(".+@.+\..+").hasMatch(email)) {
+    if (email != null && !RegExp(".+@.+[.].+").hasMatch(email)) {
       Navigator.popAndPushNamed(context, "/signupErrorEmail");
+    }
+
+    if (phoneNum != null && !RegExp("[+]1[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]").hasMatch(phoneNum)) {
+      Navigator.popAndPushNamed(context, "/signupErrorPhone");
     }
 
     bool valid = false;
@@ -187,6 +192,30 @@ class _SignupState extends State<Signup> {
                     Container(
                       child: (widget.errorState == 3)
                           ? const Text("Password must be at least 6 characters long.",
+                        style: TextStyle(color: Colors.red),
+                      )
+                          : null,
+                    ),
+
+                    Container(
+                      child: (widget.errorState == 4)
+                          ? const Text("Invalid Phone Number:",
+                        style: TextStyle(color: Colors.red),
+                      )
+                          : null,
+                    ),
+
+                    Container(
+                      child: (widget.errorState == 4)
+                          ? const Text("Phone number must be in the format",
+                        style: TextStyle(color: Colors.red),
+                      )
+                          : null,
+                    ),
+
+                    Container(
+                      child: (widget.errorState == 4)
+                          ? const Text("\"+1##########\"",
                         style: TextStyle(color: Colors.red),
                       )
                           : null,
