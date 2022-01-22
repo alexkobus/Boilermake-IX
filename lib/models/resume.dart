@@ -1,3 +1,5 @@
 class Resume {
-  late String s;
+  late String name;
+  late String studentEmail;
+  
 }

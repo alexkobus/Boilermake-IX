@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:thoughtify/models/post.dart';
@@ -10,7 +11,6 @@ class Application extends StatefulWidget {
 }
 
 class _ApplicationState extends State<Application> {
-  User currentUser = User("defaultuser@default.com", "password", "Default User", "Student", "+14444444444");
   final ScrollController _scrollController = ScrollController();
   final wtController = TextEditingController();
   final wcController = TextEditingController();
@@ -49,12 +49,6 @@ class _ApplicationState extends State<Application> {
 
   void initState() {
     super.initState();
-    getUserInfo();
-  }
-
-  void getUserInfo() {
-    //TODO: get user's information from database
-    currentUser = User("defaultuser@default.com", "password", "Default User", "Student", "+14444444444");
   }
 
   void apply(String? name, String? email, String? jobTitle, String? companyName, String? jobDesc,
@@ -94,7 +88,7 @@ class _ApplicationState extends State<Application> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: currentUser.name,
+                      initialValue: FirebaseAuth.instance.currentUser?.displayName,
                       decoration: const InputDecoration(
                           helperText: 'Name'
                       ),
@@ -102,7 +96,7 @@ class _ApplicationState extends State<Application> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: currentUser.email,
+                      initialValue: FirebaseAuth.instance.currentUser?.email,
                       decoration: const InputDecoration(
                           helperText: 'Email Address'
                       ),
@@ -201,7 +195,7 @@ class _ApplicationState extends State<Application> {
 
                     ElevatedButton(
                       onPressed: () {
-                        apply(currentUser.name, currentUser.email, wtController.text, wcController.text, wdController.text,
+                        apply(FirebaseAuth.instance.currentUser?.displayName, FirebaseAuth.instance.currentUser?.email, wtController.text, wcController.text, wdController.text,
                         wsdController.text, wedController.text, uController.text, usdController.text, uedController.text,
                         udController.text, umController.text, gpaController.text, sController.text, linController.text);
                       },
