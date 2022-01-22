@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class Login extends StatefulWidget {
-  const Login({Key? key, required this.errorState}) : super(key: key);
-  _LoginState createState() => _LoginState();
+class Signup extends StatefulWidget {
+  const Signup({Key? key, required this.errorState}) : super(key: key);
+  _SignupState createState() => _SignupState();
   final bool errorState;
 }
 
-class _LoginState extends State<Login> {
+class _SignupState extends State<Signup> {
   final uController = TextEditingController();
   final pController = TextEditingController();
 
@@ -18,7 +18,7 @@ class _LoginState extends State<Login> {
     super.dispose();
   }
 
-  _LoginState();
+  _SignupState();
 
   void initState() {
     super.initState();
@@ -36,7 +36,7 @@ class _LoginState extends State<Login> {
       Navigator.pushNamed(context, "/default");
       //TODO: make this go to the homepage of the app
     } else {
-      Navigator.popAndPushNamed(context, "/loginError");
+      Navigator.popAndPushNamed(context, "/signupError");
     }
   }
 
@@ -52,7 +52,7 @@ class _LoginState extends State<Login> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        title: Text("Login to Thoughtify"),
+        title: Text("Create an Account"),
       ),
 
       body: Center(
@@ -87,23 +87,8 @@ class _LoginState extends State<Login> {
                   onPressed: () {
                     validateLoginInfo(uController.text, pController.text);
                   },
-                  child: const Text('Login'),
+                  child: const Text('Sign Up'),
                 ),
-
-                //empty widget for padding
-                const SizedBox(
-                  width: 50,
-                  height: 30,
-                ),
-
-                GestureDetector(
-                  child: const Text("Don't have an account? Tap here to sign up.",
-                      style: TextStyle(decoration: TextDecoration.underline, color: Colors.blue)
-                  ),
-                  onTap: () async {
-                    Navigator.pushNamed(context, "/signup");
-                  },
-                )
               ],
             ),
           )

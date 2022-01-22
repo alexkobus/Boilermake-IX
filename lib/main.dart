@@ -34,8 +34,10 @@ class MyApp extends StatelessWidget {
       routes: {
         // "/": (context) => AddProject("prof", "desc")
         "/": (context) => Login(errorState: false),
-        "/default": (context) => MyHomePage(title: "default",),
+        "/default": (context) => MyHomePage(title: "default"),
         "/loginError": (context) => Login(errorState: true),
+        "/signup": (context) => Signup(errorState: false),
+        "/signupError": (context) => Signup(errorState: true),
       }
     );
   }
