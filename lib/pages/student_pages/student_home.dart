@@ -44,13 +44,6 @@ class _StudentHomeState extends State<StudentHome> {
                   Navigator.pushNamed(context, "/profile");
                 },
               ),
-
-              IconButton(
-                icon: Icon(Icons.refresh),
-                onPressed: () {
-                  Navigator.popAndPushNamed(context, "/student_home");
-                },
-              ),
             ],
           ),
 
