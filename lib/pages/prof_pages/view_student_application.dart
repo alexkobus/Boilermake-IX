@@ -260,6 +260,8 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.red,),
                           onPressed: () {
                             deny();
                           },
@@ -271,6 +273,8 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
                         ),
 
                         ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.green,),
                           onPressed: () {
                             accept();
                           },
