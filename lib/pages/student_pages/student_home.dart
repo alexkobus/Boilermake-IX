@@ -15,7 +15,6 @@ class _StudentHomeState extends State<StudentHome> {
   final Stream<QuerySnapshot> _postsStream =
       FirebaseFirestore.instance.collection('posts').snapshots();
 
-
   _StudentHomeState();
 
   void initState() {
@@ -34,6 +33,7 @@ class _StudentHomeState extends State<StudentHome> {
           }
         }
 
+        String applyButtonText;
         return Scaffold(
           appBar: AppBar(
             title: Text("Student Homepage"),
@@ -69,6 +69,9 @@ class _StudentHomeState extends State<StudentHome> {
                             subtitle: Text(postList[index].desc),
                             trailing: ElevatedButton(
                               onPressed: () {
+                                // Stream<QuerySnapshot> _studentStream =
+                                //   FirebaseFirestore.instance.collection('posts').doc(postList[index].id).collection('students').snapshots();
+                                // return StreamBuilder<Query
                                 Navigator.push(context, MaterialPageRoute(builder: (context)=>Application(post: postList[index],)));
                               },
                               child: Text("Apply"),
