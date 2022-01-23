@@ -74,9 +74,9 @@ class _ApplicationState extends State<Application> {
   }
 
   void apply(String? postId, String? name, String? email, String? w1Title, String? w1Company, String? w1Desc,
-      String? w1Start, String? w1End, String? e1Name, String? e1Start, String? e1Grad,
-      String? e1Degree, String? e1Major, String? e1GPA,String? w2Title, String? w2Company, String? w2Desc,
-      String? w2Start, String? w2End, String? e2Name, String? e2Start, String? e2Grad,
+      String? w1Start, String? w1End, String? w2Title, String? w2Company, String? w2Desc,
+      String? w2Start, String? w2End, String? e1Name, String? e1Start, String? e1Grad,
+      String? e1Degree, String? e1Major, String? e1GPA, String? e2Name, String? e2Start, String? e2Grad,
       String? e2Degree, String? e2Major, String? e2GPA, String? skills, String? linkedInUrl) {
 
 
