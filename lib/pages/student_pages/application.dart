@@ -111,8 +111,12 @@ class _ApplicationState extends State<Application> {
       'e2_major': e2Major,
 
       'skills': skills,
-      'linkedin_url': linkedInUrl
+      'linkedin_url': linkedInUrl,
+
+      'application_status': "under_review"
     });
+
+
 
 
     //TODO: get application status from db

@@ -34,7 +34,7 @@ class _ViewPostStudentsState extends State<ViewPostStudents> {
                     student["e1_degree"], student["e1_major"], student["e1_gpa"],
                     student["e2_name"], student["e2_start"], student["e2_grad"],
                     student["e2_degree"], student["e2_major"], student["e2_gpa"],
-                    student["skills"], student["linkedin_url"], Acceptance.underReview));
+                    student["skills"], student["linkedin_url"], student["application_status"]));
           }
 
           // TODO: implement return w UI

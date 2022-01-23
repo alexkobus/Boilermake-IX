@@ -33,7 +33,7 @@ class Resume {
   late String skills;
   late String linkedInUrl;
 
-  late Acceptance accepted;
+  late ApplicationStatus accepted;
 
   Resume(
     this.id,
@@ -67,6 +67,6 @@ class Resume {
   );
 }
 
-enum Acceptance {
+enum ApplicationStatus {
   accepted, denied, underReview
 }

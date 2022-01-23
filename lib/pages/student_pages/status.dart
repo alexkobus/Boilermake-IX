@@ -5,7 +5,7 @@ class Status extends StatefulWidget {
 
   const Status({Key? key, required this.acceptanceStatus}) : super(key: key);
   _StatusState createState() => _StatusState();
-  final Acceptance acceptanceStatus;
+  final ApplicationStatus acceptanceStatus;
 }
 
 class _StatusState extends State<Status> {
@@ -37,7 +37,7 @@ class _StatusState extends State<Status> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
-                      child: (widget.acceptanceStatus == Acceptance.accepted)
+                      child: (widget.acceptanceStatus == ApplicationStatus.accepted)
                           ? const Text("ACCEPTED!",
                         style: TextStyle(color: Colors.green, fontSize:32),
                       )
@@ -45,7 +45,7 @@ class _StatusState extends State<Status> {
                     ),
 
                     Container(
-                      child: (widget.acceptanceStatus == Acceptance.underReview)
+                      child: (widget.acceptanceStatus == ApplicationStatus.underReview)
                           ? const Text("Under Review",
                         style: TextStyle(fontSize:32),
                       )
@@ -53,7 +53,7 @@ class _StatusState extends State<Status> {
                     ),
 
                     Container(
-                      child: (widget.acceptanceStatus == Acceptance.denied)
+                      child: (widget.acceptanceStatus == ApplicationStatus.denied)
                           ? const Text("Denied",
                       style: TextStyle(color: Colors.red, fontSize: 32),
                       )
