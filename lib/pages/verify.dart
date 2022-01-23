@@ -141,13 +141,13 @@ class _VerifyState extends State<Verify> {
 
                         ElevatedButton(
                           onPressed: () {
-                            // checkCode(vController.text);
-                            if (widget.role.compareTo("Professor") == 0) {
-                              Navigator.popAndPushNamed(context, "/prof_home");
-
-                            } else if (widget.role.compareTo("Student") == 0) {
-                              Navigator.popAndPushNamed(context, "/student_home");
-                            }
+                            checkCode(vController.text);
+                            // if (widget.role.compareTo("Professor") == 0) {
+                            //   Navigator.popAndPushNamed(context, "/prof_home");
+                            //
+                            // } else if (widget.role.compareTo("Student") == 0) {
+                            //   Navigator.popAndPushNamed(context, "/student_home");
+                            // }
                           },
                           child: const Text('Verify'),
                         ),
