@@ -20,25 +20,34 @@ class _ProfileState extends State<Profile> {
         title: Text("User Profile"),
       ),
 
-      body: Center(
-          child: Padding(
-              padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-              child: SingleChildScrollView(
-                controller: _scrollController,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    // Text("Name"), Text(FirebaseAuth.instance.currentUser?.displayName),
-                    // Text("Email"), Text(FirebaseAuth.instance.currentUser?.email),
-                    //TODO
-                    //Text("Phone Number"), Text(FirebaseAuth.instance.currentUser?.  )
-                    //TODO
-                    //Text("Role"), Text(FirebaseAuth.instance.currentUser?.  )
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            //TODO: return this info from the db
 
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+              child: Text("Name: "),
+            ),
 
-                  ],
-                ),)
-          )
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
+              child: Text("Email: "),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
+              child: Text("Phone Number: "),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
+              child: Text("Role: "),
+            ),
+          ],
+        ),
       ),
     );
   }
