@@ -11,7 +11,7 @@ class ViewApplicants extends StatefulWidget {
 }
 
 class _ViewApplicantsState extends State<ViewApplicants> {
-  List<Resume> students = <Resume>[];
+  List<Submission> students = <Submission>[];
 
   final ScrollController _scrollController = ScrollController();
 
@@ -27,17 +27,45 @@ class _ViewApplicantsState extends State<ViewApplicants> {
           students.clear();
           if (snapshot.data != null) {
             for (var student in snapshot.data!.docs) {
-              students.add(
-                  Resume(student.id, student["name"], student["email"],
-                      student["w1_title"], student["w1_company"], student["w1_start"],
-                      student["w1_end"], student["w1_desc"],
-                      student["w2_title"], student["w2_company"], student["w2_start"],
-                      student["w2_end"], student["w2_desc"],
-                      student["e1_name"], student["e1_start"], student["e1_grad"],
-                      student["e1_degree"], student["e1_major"], student["e1_gpa"],
-                      student["e2_name"], student["e2_start"], student["e2_grad"],
-                      student["e2_degree"], student["e2_major"], student["e2_gpa"],
-                      student["skills"], student["linkedin_url"], student["application_status"]));
+              if (student["post"] == widget.post?.id){
+                ApplicationStatus status = ApplicationStatus.underReview;
+                if (student["application_status"] == "accepted") {
+                  status = ApplicationStatus.accepted;
+                } else if (student["application_status"] == "under_review") {
+                  status = ApplicationStatus.underReview;
+                } else if (student["application_status"] == "denied") {
+                  status = ApplicationStatus.denied;
+                }
+                students.add(Submission(
+                    student.id,
+                    student["name"],
+                    student["email"],
+                    student["w1_title"],
+                    student["w1_company"],
+                    student["w1_start"],
+                    student["w1_end"],
+                    student["w1_desc"],
+                    student["w2_title"],
+                    student["w2_company"],
+                    student["w2_start"],
+                    student["w2_end"],
+                    student["w2_desc"],
+                    student["e1_name"],
+                    student["e1_start"],
+                    student["e1_grad"],
+                    student["e1_degree"],
+                    student["e1_major"],
+                    student["e1_gpa"],
+                    student["e2_name"],
+                    student["e2_start"],
+                    student["e2_grad"],
+                    student["e2_degree"],
+                    student["e2_major"],
+                    student["e2_gpa"],
+                    student["skills"],
+                    student["linkedin_url"],
+                    status));
+              }
             }
           }
 

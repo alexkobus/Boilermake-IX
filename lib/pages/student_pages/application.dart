@@ -111,6 +111,7 @@ class _ApplicationState extends State<Application> {
       'e2_grad': e2Grad,
       'e2_degree': e2Degree,
       'e2_major': e2Major,
+      'e2_gpa': e2GPA,
 
       'skills': skills,
       'linkedin_url': linkedInUrl,

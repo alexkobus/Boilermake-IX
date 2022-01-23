@@ -4,7 +4,7 @@ import 'package:thoughtify/models/resume.dart';
 class ViewStudentApplication extends StatefulWidget {
   const ViewStudentApplication({Key? key, required this.student}) : super(key: key);
   _ViewStudentApplicationState createState() => _ViewStudentApplicationState();
-  final Resume? student;
+  final Submission? student;
 }
 
 class _ViewStudentApplicationState extends State<ViewStudentApplication> {

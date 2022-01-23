@@ -1,4 +1,4 @@
-class Resume {
+class Submission {
   late String id;
 
   late String name;
@@ -35,7 +35,7 @@ class Resume {
 
   late ApplicationStatus accepted;
 
-  Resume(
+  Submission(
     this.id,
     this.name,
     this.studentEmail,
