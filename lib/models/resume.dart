@@ -68,5 +68,5 @@ class Resume {
 }
 
 enum Acceptance {
-  accepted, notAccepted, inReview
+  accepted, denied, underReview
 }

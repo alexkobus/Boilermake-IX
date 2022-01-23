@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:thoughtify/models/resume.dart';
 import 'package:thoughtify/pages/import_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -35,9 +36,9 @@ class MyApp extends StatelessWidget {
         "/signupErrorPhone": (context) => Signup(errorState: 4),
         "/student_home": (context) => StudentHome(),
         "/application": (context) => Application(post: Post("default ID - likely not on Firestore", "default@default.com","Professor", "default title", "default description")),
-        "/statusAccepted": (context) => Status(show: 1),
-        "/statusInprogress": (context) => Status(show: 2),
-        "/statusdenied": (context) => Status(show: 3),
+        "/statusAccepted": (context) => Status(acceptanceStatus: Acceptance.accepted),
+        "/statusInprogress": (context) => Status(acceptanceStatus: Acceptance.underReview),
+        "/statusdenied": (context) => Status(acceptanceStatus: Acceptance.denied),
         "/profile": (context) => Profile(),
         "/verify": (context) => Verify(phoneNum: "+12222222222", errorState: false, role: "Student"),
         "/verifyError": (context) => Verify(phoneNum: "+12222222222", errorState: true, role: "Student"),

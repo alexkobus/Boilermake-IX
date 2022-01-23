@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:thoughtify/models/resume.dart';
 
 class Status extends StatefulWidget {
 
-  const Status({Key? key, required this.show}) : super(key: key);
+  const Status({Key? key, required this.acceptanceStatus}) : super(key: key);
   _StatusState createState() => _StatusState();
-  final int show;
-  //1 = Accepted
-  //2 = In progress
-  //3 = Denied
+  final Acceptance acceptanceStatus;
 }
 
 class _StatusState extends State<Status> {
@@ -39,7 +37,7 @@ class _StatusState extends State<Status> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
-                      child: (widget.show == 1)
+                      child: (widget.acceptanceStatus == Acceptance.accepted)
                           ? const Text("ACCEPTED!",
                         style: TextStyle(color: Colors.green, fontSize:32),
                       )
@@ -47,15 +45,15 @@ class _StatusState extends State<Status> {
                     ),
 
                     Container(
-                      child: (widget.show == 2)
-                          ? const Text("In Progress",
+                      child: (widget.acceptanceStatus == Acceptance.underReview)
+                          ? const Text("Under Review",
                         style: TextStyle(fontSize:32),
                       )
                           : null,
                     ),
 
                     Container(
-                      child: (widget.show == 3)
+                      child: (widget.acceptanceStatus == Acceptance.denied)
                           ? const Text("Denied",
                       style: TextStyle(color: Colors.red, fontSize: 32),
                       )
