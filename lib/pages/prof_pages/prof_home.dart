@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:thoughtify/models/post.dart';
 
 class ProfHome extends StatefulWidget {
@@ -9,6 +10,8 @@ class ProfHome extends StatefulWidget {
 }
 
 class _ProfHomeState extends State<ProfHome> {
+  final ScrollController _scrollController = ScrollController();
+
   final Stream<QuerySnapshot> _postsStream =
     FirebaseFirestore.instance.collection('posts').snapshots();
   List<Post> myPosts = <Post>[];
@@ -20,16 +23,61 @@ class _ProfHomeState extends State<ProfHome> {
       stream: _postsStream,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           myPosts.clear();
-          for (var post in snapshot.data!.docs) {
-            if (post["prof_email"] ==
-                FirebaseAuth.instance.currentUser?.email) {
-              myPosts.add(
-                  Post(post.id, post["prof_email"], post["prof_name"], post["title"], post["desc"]));
+          if (snapshot.data != null) {
+            for (var post in snapshot.data!.docs) {
+              if (post["prof_email"] ==
+                  FirebaseAuth.instance.currentUser?.email) {
+                myPosts.add(
+                    Post(post.id, post["prof_email"], post["prof_name"], post["title"], post["desc"]));
+              }
             }
           }
 
-          // TODO: implement return w UI
-          throw UnimplementedError();
+          return Scaffold(
+            appBar: AppBar(
+              title: Text("Professor Home"),
+              actions: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.assignment_ind),
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/profile");
+                  },
+                ),
+
+                IconButton(
+                  icon: Icon(Icons.refresh),
+                  onPressed: () {
+                    Navigator.popAndPushNamed(context, "/prof_home");
+                  },
+                ),
+              ],
+            ),
+
+            body: Center(
+                child: Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                    child: Scrollbar(
+                      isAlwaysShown: true,
+                      controller: _scrollController,
+                      child: ListView.builder(
+                          controller: _scrollController,
+                          itemCount: myPosts.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              title: Text(myPosts[index].profName + " - " + myPosts[index].title),
+                              subtitle: Text(myPosts[index].desc),
+                              trailing: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(context, "/default");
+                                },
+                                child: Text("View Applicants"),
+                              ),
+                            );
+                          }),
+                    )
+                )
+            ),
+          );
         }
     );
   }

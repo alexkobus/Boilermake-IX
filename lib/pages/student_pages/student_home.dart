@@ -65,7 +65,7 @@ class _StudentHomeState extends State<StudentHome> {
                         itemCount: postList.length,
                         itemBuilder: (context, index) {
                           return ListTile(
-                            title: Text(postList[index].profName),
+                            title: Text(postList[index].profName + " - " + postList[index].title),
                             subtitle: Text(postList[index].desc),
                             trailing: ElevatedButton(
                               onPressed: () {

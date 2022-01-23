@@ -42,6 +42,7 @@ class MyApp extends StatelessWidget {
         "/profile": (context) => Profile(),
         "/verify": (context) => Verify(phoneNum: "+12222222222", errorState: false, role: "Student"),
         "/verifyError": (context) => Verify(phoneNum: "+12222222222", errorState: true, role: "Student"),
+        "/prof_home": (context) => ProfHome(),
       }
     );
   }

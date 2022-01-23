@@ -147,8 +147,8 @@ class _ApplicationState extends State<Application> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
 
-                    Text(widget.post!.profName + "'s Post", style: TextStyle(fontWeight: FontWeight.bold),),
-
+                    Text(widget.post!.title, style: TextStyle(fontWeight: FontWeight.bold),),
+                    Text(widget.post!.profName, style: TextStyle(fontStyle: FontStyle.italic),),
                     Text(widget.post!.desc),
 
                     TextFormField(
