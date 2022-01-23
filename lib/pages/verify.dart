@@ -25,6 +25,25 @@ class _VerifyState extends State<Verify> {
 
   void initState() {
     super.initState();
+    sendMSG();
+  }
+
+  Future<void> sendMSG() async {
+    TwilioPhoneVerify _twilioPhoneVerify;
+    _twilioPhoneVerify = TwilioPhoneVerify (
+        accountSid: Tokens.accountSID,
+        authToken: Tokens.authToken,
+        serviceSid: Tokens.serviceSID
+    );
+
+    var twilioResponse =
+        await _twilioPhoneVerify.sendSmsCode(widget.phoneNum);
+
+    if (twilioResponse.successful== true)  {
+      print("code sent");
+    } else {
+      print(twilioResponse.errorMessage);
+    }
   }
 
   Future<void> checkCode(String code) async {
@@ -35,16 +54,16 @@ class _VerifyState extends State<Verify> {
         serviceSid: Tokens.serviceSID
     );
 
-    var twilioResponse =
-    await _twilioPhoneVerify.sendSmsCode(widget.phoneNum);
+    // var twilioResponse =
+    // await _twilioPhoneVerify.sendSmsCode(widget.phoneNum);
+    //
+    // if (twilioResponse.successful== true)  {
+    //   print("code sent");
+    // } else {
+    //   print(twilioResponse.errorMessage);
+    // }
 
-    if (twilioResponse.successful== true)  {
-      print("code sent");
-    } else {
-      print(twilioResponse.errorMessage);
-    }
-
-    twilioResponse = await _twilioPhoneVerify.verifySmsCode(
+    var twilioResponse = await _twilioPhoneVerify.verifySmsCode(
         phone: widget.phoneNum, code: code);
 
     if (twilioResponse.successful== true) {

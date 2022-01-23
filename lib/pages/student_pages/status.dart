@@ -24,7 +24,7 @@ class _StatusState extends State<Status> {
           IconButton(
             icon: Icon(Icons.assignment_ind),
             onPressed: () {
-              Navigator.popAndPushNamed(context, "/profile");
+              Navigator.pushNamed(context, "/profile");
             },
           ),
         ],
