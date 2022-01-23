@@ -39,8 +39,8 @@ class MyApp extends StatelessWidget {
         "/statusInprogress": (context) => Status(show: 2),
         "/statusdenied": (context) => Status(show: 3),
         "/profile": (context) => Profile(),
-        "/verify": (context) => Verify(phoneNum: "+12222222222", errorState: false,),
-        "/verifyError": (context) => Verify(phoneNum: "+12222222222", errorState: true),
+        "/verify": (context) => Verify(phoneNum: "+12222222222", errorState: false, role: "Student"),
+        "/verifyError": (context) => Verify(phoneNum: "+12222222222", errorState: true, role: "Student"),
       }
     );
   }

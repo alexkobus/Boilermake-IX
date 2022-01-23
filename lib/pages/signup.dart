@@ -98,11 +98,6 @@ class _SignupState extends State<Signup> {
         });
         valid = true;
       } on FirebaseAuthException catch (e) {
-        // if (e.code == 'weak-password') {
-        //   // TODO do something
-        // } else if (e.code == 'email-already-in-use') {
-        //   // TODO do something
-        // }
         valid = false;
       } catch (e) {
         valid = false;
@@ -111,7 +106,7 @@ class _SignupState extends State<Signup> {
 
     if (valid == true) {
       print("USER CREATED");
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>Verify(phoneNum: phoneNum, errorState: false,)));
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>Verify(phoneNum: phoneNum, errorState: false, role: role)));
     } else {
       Navigator.popAndPushNamed(context, "/signupError");
     }

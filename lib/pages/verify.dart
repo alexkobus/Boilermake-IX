@@ -3,10 +3,11 @@ import 'package:thoughtify/helpers/tokens.dart';
 import 'package:twilio_phone_verify/twilio_phone_verify.dart';
 
 class Verify extends StatefulWidget {
-  const Verify({Key? key, required this.phoneNum, required this.errorState}) : super(key: key);
+  const Verify({Key? key, required this.phoneNum, required this.errorState, required this.role}) : super(key: key);
   _VerifyState createState() => _VerifyState();
   final String phoneNum;
   final bool errorState;
+  final String role;
 }
 
 class _VerifyState extends State<Verify> {
@@ -53,7 +54,7 @@ class _VerifyState extends State<Verify> {
         Navigator.popAndPushNamed(context, "/student_home");
       } else {
         print('Invalid code');
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>Verify(phoneNum: widget.phoneNum, errorState: true,)));
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>Verify(phoneNum: widget.phoneNum, errorState: true, role: widget.role)));
       }
     } else {
       print(twilioResponse.errorMessage);
