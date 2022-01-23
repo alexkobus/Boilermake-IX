@@ -18,14 +18,6 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       appBar: AppBar(
         title: Text("User Profile"),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.assignment_ind),
-            onPressed: () {
-              Navigator.popAndPushNamed(context, "/profile");
-            },
-          ),
-        ],
       ),
 
       body: Center(
