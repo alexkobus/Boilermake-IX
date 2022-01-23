@@ -43,6 +43,9 @@ class MyApp extends StatelessWidget {
         "/verify": (context) => Verify(phoneNum: "+12222222222", errorState: false, role: "Student"),
         "/verifyError": (context) => Verify(phoneNum: "+12222222222", errorState: true, role: "Student"),
         "/prof_home": (context) => ProfHome(),
+        "/viewApplicants": (context) => ViewApplicants(post: Post("default ID - likely not on Firestore", "default@default.com","Professor", "default title", "default description")),
+        "/viewStudentApplication": (context) => ViewStudentApplication(student: null),
+        "/createPost": (context) => CreatePost(),
       }
     );
   }
