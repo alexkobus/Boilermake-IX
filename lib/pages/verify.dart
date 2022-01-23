@@ -25,26 +25,28 @@ class _VerifyState extends State<Verify> {
 
   void initState() {
     super.initState();
-    sendMSG();
+    // sendMSG();
   }
 
-  Future<void> sendMSG() async {
-    TwilioPhoneVerify _twilioPhoneVerify;
-    _twilioPhoneVerify = TwilioPhoneVerify (
-        accountSid: Tokens.accountSID,
-        authToken: Tokens.authToken,
-        serviceSid: Tokens.serviceSID
-    );
+  //TODO
 
-    var twilioResponse =
-        await _twilioPhoneVerify.sendSmsCode(widget.phoneNum);
-
-    if (twilioResponse.successful== true)  {
-      print("code sent");
-    } else {
-      print(twilioResponse.errorMessage);
-    }
-  }
+  // Future<void> sendMSG() async {
+  //   TwilioPhoneVerify _twilioPhoneVerify;
+  //   _twilioPhoneVerify = TwilioPhoneVerify (
+  //       accountSid: Tokens.accountSID,
+  //       authToken: Tokens.authToken,
+  //       serviceSid: Tokens.serviceSID
+  //   );
+  //
+  //   var twilioResponse =
+  //       await _twilioPhoneVerify.sendSmsCode(widget.phoneNum);
+  //
+  //   if (twilioResponse.successful== true)  {
+  //     print("code sent");
+  //   } else {
+  //     print(twilioResponse.errorMessage);
+  //   }
+  // }
 
   Future<void> checkCode(String code) async {
     TwilioPhoneVerify _twilioPhoneVerify;
@@ -139,13 +141,13 @@ class _VerifyState extends State<Verify> {
 
                         ElevatedButton(
                           onPressed: () {
-                            checkCode(vController.text);
-                            // if (widget.role.compareTo("Professor") == 0) {
-                            //   Navigator.popAndPushNamed(context, "/prof_home");
-                            //
-                            // } else if (widget.role.compareTo("Student") == 0) {
-                            //   Navigator.popAndPushNamed(context, "/student_home");
-                            // }
+                            // checkCode(vController.text);
+                            if (widget.role.compareTo("Professor") == 0) {
+                              Navigator.popAndPushNamed(context, "/prof_home");
+
+                            } else if (widget.role.compareTo("Student") == 0) {
+                              Navigator.popAndPushNamed(context, "/student_home");
+                            }
                           },
                           child: const Text('Verify'),
                         ),
