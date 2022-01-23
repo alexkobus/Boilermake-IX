@@ -36,7 +36,7 @@ class _ProfHomeState extends State<ProfHome> {
 
           return Scaffold(
             appBar: AppBar(
-              title: Text("Professor Home"),
+              title: Text("Your Posts"),
               actions: <Widget>[
                 IconButton(
                   icon: Icon(Icons.assignment_ind),
@@ -71,6 +71,12 @@ class _ProfHomeState extends State<ProfHome> {
                     )
                 )
             ),
+              floatingActionButton: FloatingActionButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "/createPost");
+                },
+                child: const Icon(Icons.add),
+              )
           );
         }
     );
