@@ -142,7 +142,8 @@ class _VerifyState extends State<Verify> {
 
                         ElevatedButton(
                           onPressed: () {
-                            checkCode(vController.text);
+                            // checkCode(vController.text);
+                            Navigator.popAndPushNamed(context, "/student_home");
                           },
                           child: const Text('Verify'),
                         ),
