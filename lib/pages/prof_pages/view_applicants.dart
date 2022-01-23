@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:thoughtify/models/post.dart';
 import 'package:thoughtify/models/resume.dart';
+import 'package:thoughtify/pages/prof_pages/view_student_application.dart';
 
 class ViewApplicants extends StatefulWidget {
   const ViewApplicants({Key? key, required this.post}) : super(key: key);
@@ -98,9 +99,9 @@ class _ViewApplicantsState extends State<ViewApplicants> {
                               + students[index].w1Desc),
                               trailing: ElevatedButton(
                                 onPressed: () {
-                                  Navigator.pushNamed(context, "/default");
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>ViewStudentApplication(student: students[index],)));
                                 },
-                                child: Text("View Applicants"),
+                                child: Text("View Application"),
                               ),
                             );
                           }),
