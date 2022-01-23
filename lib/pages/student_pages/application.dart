@@ -69,7 +69,7 @@ class _ApplicationState extends State<Application> {
           IconButton(
             icon: Icon(Icons.assignment_ind),
             onPressed: () {
-              Navigator.popAndPushNamed(context, "/profile");
+              Navigator.pushNamed(context, "/profile");
             },
           ),
         ],

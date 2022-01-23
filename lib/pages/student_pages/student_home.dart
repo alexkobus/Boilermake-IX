@@ -41,7 +41,7 @@ class _StudentHomeState extends State<StudentHome> {
               IconButton(
                 icon: Icon(Icons.assignment_ind),
                 onPressed: () {
-                  Navigator.popAndPushNamed(context, "/profile");
+                  Navigator.pushNamed(context, "/profile");
                 },
               ),
 
