@@ -28,7 +28,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Apply"),
+        title: Text(widget.student!.name + "'s Application"),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.assignment_ind),
