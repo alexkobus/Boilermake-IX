@@ -39,6 +39,13 @@ class _StudentHomeState extends State<StudentHome> {
             title: Text("Student Homepage"),
             actions: <Widget>[
               IconButton(
+                icon: Icon(Icons.assignment_ind),
+                onPressed: () {
+                  Navigator.popAndPushNamed(context, "/profile");
+                },
+              ),
+
+              IconButton(
                 icon: Icon(Icons.refresh),
                 onPressed: () {
                   Navigator.popAndPushNamed(context, "/student_home");

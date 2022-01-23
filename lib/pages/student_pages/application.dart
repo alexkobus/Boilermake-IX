@@ -65,6 +65,14 @@ class _ApplicationState extends State<Application> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Apply"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.assignment_ind),
+            onPressed: () {
+              Navigator.popAndPushNamed(context, "/profile");
+            },
+          ),
+        ],
       ),
 
       body: Center(
