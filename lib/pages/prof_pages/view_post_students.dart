@@ -25,14 +25,16 @@ class _ViewPostStudentsState extends State<ViewPostStudents> {
           students.clear();
           for (var student in snapshot.data!.docs) {
             students.add(
-                Resume(student.id, student["name"], student["email"], student["latest_job_title"],
-                    student["latest_job_company"], student["latest_work_start_date"],
-                    student["latest_work_end_date"], student["all_work_json"],
-                    student["latest_school_name"], student["latest_school_start_date"],
-                    student["latest_school_grad_date"], student["latest_school_degree"],
-                    student["latest_school_major"], student["latest_school_gpa"],
-                    student["all_education_json"], student["skills"], student["linkedin_url"],
-                    student["num_jobs"], student["num_schools"]));
+                Resume(student.id, student["name"], student["email"],
+                    student["w1_title"], student["w1_company"], student["w1_start"],
+                    student["w1_end"], student["w1_desc"],
+                    student["w2_title"], student["w2_company"], student["w2_start"],
+                    student["w2_end"], student["w2_desc"],
+                    student["e1_name"], student["e1_start"], student["e1_grad"],
+                    student["e1_degree"], student["e1_major"], student["e1_gpa"],
+                    student["e2_name"], student["e2_start"], student["e2_grad"],
+                    student["e2_degree"], student["e2_major"], student["e2_gpa"],
+                    student["skills"], student["linkedin_url"], Acceptance.inReview));
           }
 
           // TODO: implement return w UI

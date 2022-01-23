@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -72,13 +73,47 @@ class _ApplicationState extends State<Application> {
     super.initState();
   }
 
-  void apply(String? name, String? email, String? jobTitle, String? companyName, String? jobDesc,
-      String? jobSDate, String? jobEDate, String? univName, String? univSDate, String? univEDate,
-      String? degreeType, String? major, String? gpa,String? jobTitle2, String? companyName2, String? jobDesc2,
-  String? jobSDate2, String? jobEDate2, String? univName2, String? univSDate2, String? univEDate2,
-      String? degreeType2, String? major2, String? gpa2, String? skills, String? linURL) {
+  void apply(String? postId, String? name, String? email, String? w1Title, String? w1Company, String? w1Desc,
+      String? w1Start, String? w1End, String? e1Name, String? e1Start, String? e1Grad,
+      String? e1Degree, String? e1Major, String? e1GPA,String? w2Title, String? w2Company, String? w2Desc,
+      String? w2Start, String? w2End, String? e2Name, String? e2Start, String? e2Grad,
+      String? e2Degree, String? e2Major, String? e2GPA, String? skills, String? linkedInUrl) {
 
-    //TODO: send application info to database
+
+    CollectionReference resume = FirebaseFirestore.instance.collection('posts').doc(postId).collection('students');
+    resume.add({
+      'name': name,
+      'email': email,
+
+      'w1_title': w1Title,
+      'w1_company': w1Company,
+      'w1_start': w1Start,
+      'w1_end': w1End,
+      'w1_desc': w1Desc,
+
+      'w2_title': w2Title,
+      'w2_company': w2Company,
+      'w2_start': w2Start,
+      'w2_end': w2End,
+      'w2_desc': w2Desc,
+
+      'e1_name': e1Name,
+      'e1_start': e1Start,
+      'e1_grad': e1Grad,
+      'e1_degree': e1Degree,
+      'e1_major': e1Major,
+      'e1_gpa': e1GPA,
+
+      'e2_name': e2Name,
+      'e2_start': e2Start,
+      'e2_grad': e2Grad,
+      'e2_degree': e2Degree,
+      'e2_major': e2Major,
+
+      'skills': skills,
+      'linkedin_url': linkedInUrl
+    });
+
 
     //TODO: get application status from db
     Navigator.pushNamed(context, "/statusInprogress");
@@ -296,7 +331,7 @@ class _ApplicationState extends State<Application> {
 
                     ElevatedButton(
                       onPressed: () {
-                        apply(FirebaseAuth.instance.currentUser?.displayName, FirebaseAuth.instance.currentUser?.email, wtController.text, wcController.text, wdController.text,
+                        apply(widget.post?.id, FirebaseAuth.instance.currentUser?.displayName, FirebaseAuth.instance.currentUser?.email, wtController.text, wcController.text, wdController.text,
                         wsdController.text, wedController.text, uController.text, usdController.text, uedController.text,
                         udController.text, umController.text, gpaController.text, sController.text, linController.text,wt2Controller.text, wc2Controller.text, wd2Controller.text,
                             wsd2Controller.text, wed2Controller.text, u2Controller.text, usd2Controller.text, ued2Controller.text,
