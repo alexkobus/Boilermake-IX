@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:thoughtify/models/post.dart';
+import 'package:thoughtify/pages/prof_pages/view_applicants.dart';
 
 class ProfHome extends StatefulWidget {
   const ProfHome({Key? key}) : super(key: key);
@@ -43,13 +44,6 @@ class _ProfHomeState extends State<ProfHome> {
                     Navigator.pushNamed(context, "/profile");
                   },
                 ),
-
-                IconButton(
-                  icon: Icon(Icons.refresh),
-                  onPressed: () {
-                    Navigator.popAndPushNamed(context, "/prof_home");
-                  },
-                ),
               ],
             ),
 
@@ -68,7 +62,7 @@ class _ProfHomeState extends State<ProfHome> {
                               subtitle: Text(myPosts[index].desc),
                               trailing: ElevatedButton(
                                 onPressed: () {
-                                  Navigator.pushNamed(context, "/default");
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>ViewApplicants(post: myPosts[index],)));
                                 },
                                 child: Text("View Applicants"),
                               ),
