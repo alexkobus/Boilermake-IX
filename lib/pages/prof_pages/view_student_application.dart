@@ -12,6 +12,18 @@ class ViewStudentApplication extends StatefulWidget {
 class _ViewStudentApplicationState extends State<ViewStudentApplication> {
   final ScrollController _scrollController = ScrollController();
 
+  void accept() {
+    //TODO: implement this with db
+
+    Navigator.pop(context);
+  }
+
+  void deny() {
+    //TODO: implement this with db
+
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -244,11 +256,27 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
                       ),
                     ),
 
-                    ElevatedButton(
-                      onPressed: () {
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            deny();
+                          },
+                          child: const Text('Deny'),
+                        ),
 
-                      },
-                      child: const Text('Send Application'),
+                        const SizedBox(
+                          width: 15,
+                        ),
+
+                        ElevatedButton(
+                          onPressed: () {
+                            accept();
+                          },
+                          child: const Text('Accept'),
+                        ),
+                      ],
                     ),
                   ],
                 ),)
