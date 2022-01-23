@@ -28,7 +28,7 @@ class _VerifyState extends State<Verify> {
     // sendMSG();
   }
 
-  //TODO: uncomment this
+  //TODO
 
   // Future<void> sendMSG() async {
   //   TwilioPhoneVerify _twilioPhoneVerify;

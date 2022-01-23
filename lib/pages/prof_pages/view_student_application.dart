@@ -1,22 +1,30 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:thoughtify/models/submission.dart';
 
-class ViewStudentApplication extends StatefulWidget {
-  const ViewStudentApplication({Key? key, required this.student}) : super(key: key);
-  _ViewStudentApplicationState createState() => _ViewStudentApplicationState();
-  final Submission? student;
+class ViewStudentSubmission extends StatefulWidget {
+  const ViewStudentSubmission({Key? key, required this.submission}) : super(key: key);
+  _ViewStudentSubmissionState createState() => _ViewStudentSubmissionState();
+  final Submission? submission;
 }
 
-class _ViewStudentApplicationState extends State<ViewStudentApplication> {
+class _ViewStudentSubmissionState extends State<ViewStudentSubmission> {
   final ScrollController _scrollController = ScrollController();
+  final CollectionReference submissions = FirebaseFirestore.instance.collection('submissions');
+
+  void deny() {
+    //TODO: implement this with db
+
+    Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Apply"),
+        title: Text(widget.submission!.name + "'s Application"),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.assignment_ind),
@@ -38,7 +46,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.name,
+                      initialValue: widget.submission!.name,
                       decoration: const InputDecoration(
                           helperText: 'Name'
                       ),
@@ -46,7 +54,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.studentEmail,
+                      initialValue: widget.submission!.studentEmail,
                       decoration: const InputDecoration(
                           helperText: 'Email Address'
                       ),
@@ -54,7 +62,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.w1Title,
+                      initialValue: widget.submission!.w1Title,
                       decoration: const InputDecoration(
                           helperText: 'Work Experience 1: Job Title'
                       ),
@@ -62,7 +70,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.w1Company,
+                      initialValue: widget.submission!.w1Company,
                       decoration: const InputDecoration(
                           helperText: 'Work Experience 1: Company Name'
                       ),
@@ -70,7 +78,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.w1Desc,
+                      initialValue: widget.submission!.w1Desc,
                       decoration: const InputDecoration(
                           helperText: 'Work Experience 1: Description'
                       ),
@@ -78,7 +86,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.w1Start,
+                      initialValue: widget.submission!.w1Start,
                       decoration: const InputDecoration(
                           helperText: 'Work Experience 1: Start Date'
                       ),
@@ -86,7 +94,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.w1End,
+                      initialValue: widget.submission!.w1End,
                       decoration: const InputDecoration(
                           helperText: 'Work Experience 1: End Date'
                       ),
@@ -94,7 +102,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.w2Title,
+                      initialValue: widget.submission!.w2Title,
                       decoration: const InputDecoration(
                           helperText: 'Work Experience 2: Job Title'
                       ),
@@ -102,7 +110,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.w2Company,
+                      initialValue: widget.submission!.w2Company,
                       decoration: const InputDecoration(
                           helperText: 'Work Experience 2: Company Name'
                       ),
@@ -110,7 +118,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.w2Desc,
+                      initialValue: widget.submission!.w2Desc,
                       decoration: const InputDecoration(
                           helperText: 'Work Experience 2: Description'
                       ),
@@ -118,7 +126,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.w2Start,
+                      initialValue: widget.submission!.w2Start,
                       decoration: const InputDecoration(
                           helperText: 'Work Experience 2: Start Date'
                       ),
@@ -126,7 +134,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.w2End,
+                      initialValue: widget.submission!.w2End,
                       decoration: const InputDecoration(
                           helperText: 'Work Experience 2: End Date'
                       ),
@@ -134,7 +142,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.e1Name,
+                      initialValue: widget.submission!.e1Name,
                       decoration: const InputDecoration(
                           helperText: 'Education 1: School Name'
                       ),
@@ -142,7 +150,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.e1Start,
+                      initialValue: widget.submission!.e1Start,
                       decoration: const InputDecoration(
                           helperText: 'Education 1: Start Date'
                       ),
@@ -150,7 +158,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.e1Grad,
+                      initialValue: widget.submission!.e1Grad,
                       decoration: const InputDecoration(
                           helperText: 'Education 1: Graduation Date'
                       ),
@@ -158,7 +166,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.e1Degree,
+                      initialValue: widget.submission!.e1Degree,
                       decoration: const InputDecoration(
                           helperText: 'Education 1: Degree'
                       ),
@@ -166,7 +174,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.e1Major,
+                      initialValue: widget.submission!.e1Major,
                       decoration: const InputDecoration(
                           helperText: 'Education 1: Major'
                       ),
@@ -174,7 +182,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.e1GPA,
+                      initialValue: widget.submission!.e1GPA,
                       decoration: const InputDecoration(
                           helperText: 'Education 1: GPA'
                       ),
@@ -182,7 +190,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.e2Name,
+                      initialValue: widget.submission!.e2Name,
                       decoration: const InputDecoration(
                           helperText: 'Education 2: School Name'
                       ),
@@ -190,7 +198,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.e2Start,
+                      initialValue: widget.submission!.e2Start,
                       decoration: const InputDecoration(
                           helperText: 'Education 2: Start Date'
                       ),
@@ -198,7 +206,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.e2Grad,
+                      initialValue: widget.submission!.e2Grad,
                       decoration: const InputDecoration(
                           helperText: 'Education 2: Graduation Date'
                       ),
@@ -206,7 +214,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.e2Degree,
+                      initialValue: widget.submission!.e2Degree,
                       decoration: const InputDecoration(
                           helperText: 'Education 2: Degree'
                       ),
@@ -214,7 +222,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.e2Major,
+                      initialValue: widget.submission!.e2Major,
                       decoration: const InputDecoration(
                           helperText: 'Education 2: Major'
                       ),
@@ -222,7 +230,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.e2GPA,
+                      initialValue: widget.submission!.e2GPA,
                       decoration: const InputDecoration(
                           helperText: 'Education 2: GPA'
                       ),
@@ -230,7 +238,7 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.skills,
+                      initialValue: widget.submission!.skills,
                       decoration: const InputDecoration(
                           helperText: 'Skills'
                       ),
@@ -238,17 +246,41 @@ class _ViewStudentApplicationState extends State<ViewStudentApplication> {
 
                     TextFormField(
                       readOnly: true,
-                      initialValue: widget.student!.linkedInUrl,
+                      initialValue: widget.submission!.linkedInUrl,
                       decoration: const InputDecoration(
                           helperText: 'LinkedIn URL'
                       ),
                     ),
 
-                    ElevatedButton(
-                      onPressed: () {
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.red,),
+                          onPressed: () {
+                            submissions.doc(widget.submission?.id)
+                                .update({'application_status': 'deny'});
+                            Navigator.pop(context);
+                          },
+                          child: const Text('Deny'),
+                        ),
 
-                      },
-                      child: const Text('Send Application'),
+                        const SizedBox(
+                          width: 15,
+                        ),
+
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.green,),
+                          onPressed: () {
+                            submissions.doc(widget.submission?.id)
+                            .update({'application_status': 'accepted'});
+                            Navigator.pop(context);
+                          },
+                          child: const Text('Accept'),
+                        ),
+                      ],
                     ),
                   ],
                 ),)

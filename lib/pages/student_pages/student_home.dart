@@ -45,6 +45,7 @@ class _StudentHomeState extends State<StudentHome> {
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.data != null) {
+                  print ("udpating submissions");
                   for (var submission in snapshot.data!.docs) {
                     if (submission["email"] == FirebaseAuth.instance.currentUser?.email){
                       ApplicationStatus status = ApplicationStatus.underReview;
