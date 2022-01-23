@@ -119,11 +119,7 @@ class _ApplicationState extends State<Application> {
       'application_status': "under_review"
     });
 
-
-
-
-    //TODO: get application status from db
-    Navigator.pushNamed(context, "/statusInprogress");
+    Navigator.pushNamed(context, "/student_home");
   }
 
   @override

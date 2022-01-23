@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:thoughtify/models/resume.dart';
+import 'package:thoughtify/models/submission.dart';
 
 class ViewStudentApplication extends StatefulWidget {
   const ViewStudentApplication({Key? key, required this.student}) : super(key: key);

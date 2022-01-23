@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:thoughtify/models/resume.dart';
+import 'package:thoughtify/models/submission.dart';
 
 class Status extends StatefulWidget {
 
-  const Status({Key? key, required this.acceptanceStatus}) : super(key: key);
+  const Status({Key? key, required this.submission, }) : super(key: key);
   _StatusState createState() => _StatusState();
-  final ApplicationStatus acceptanceStatus;
+  final Submission submission;
 }
 
 class _StatusState extends State<Status> {
@@ -37,7 +37,7 @@ class _StatusState extends State<Status> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
-                      child: (widget.acceptanceStatus == ApplicationStatus.accepted)
+                      child: (widget.submission.status == ApplicationStatus.accepted)
                           ? const Text("ACCEPTED!",
                         style: TextStyle(color: Colors.green, fontSize:32),
                       )
@@ -45,7 +45,7 @@ class _StatusState extends State<Status> {
                     ),
 
                     Container(
-                      child: (widget.acceptanceStatus == ApplicationStatus.underReview)
+                      child: (widget.submission.status == ApplicationStatus.underReview)
                           ? const Text("Under Review",
                         style: TextStyle(fontSize:32),
                       )
@@ -53,7 +53,7 @@ class _StatusState extends State<Status> {
                     ),
 
                     Container(
-                      child: (widget.acceptanceStatus == ApplicationStatus.denied)
+                      child: (widget.submission.status == ApplicationStatus.denied)
                           ? const Text("Denied",
                       style: TextStyle(color: Colors.red, fontSize: 32),
                       )

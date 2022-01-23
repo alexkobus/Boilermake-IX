@@ -1,5 +1,6 @@
 class Submission {
   late String id;
+  late String postId;
 
   late String name;
   late String studentEmail;
@@ -33,10 +34,11 @@ class Submission {
   late String skills;
   late String linkedInUrl;
 
-  late ApplicationStatus accepted;
+  late ApplicationStatus status;
 
   Submission(
     this.id,
+    this.postId,
     this.name,
     this.studentEmail,
     this.w1Title,
@@ -63,7 +65,7 @@ class Submission {
     this.e2GPA,
     this.skills,
     this.linkedInUrl,
-    this.accepted
+    this.status
   );
 }
 

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:thoughtify/models/post.dart';
-import 'package:thoughtify/models/resume.dart';
+import 'package:thoughtify/models/submission.dart';
 
 class ViewApplicants extends StatefulWidget {
   const ViewApplicants({Key? key, required this.post}) : super(key: key);
@@ -11,7 +11,7 @@ class ViewApplicants extends StatefulWidget {
 }
 
 class _ViewApplicantsState extends State<ViewApplicants> {
-  List<Submission> students = <Submission>[];
+  List<Submission> submissions = <Submission>[];
 
   final ScrollController _scrollController = ScrollController();
 
@@ -24,46 +24,47 @@ class _ViewApplicantsState extends State<ViewApplicants> {
     return StreamBuilder<QuerySnapshot> (
         stream: _submissionsStream,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          students.clear();
+          submissions.clear();
           if (snapshot.data != null) {
-            for (var student in snapshot.data!.docs) {
-              if (student["post"] == widget.post?.id){
+            for (var submission in snapshot.data!.docs) {
+              if (submission["post"] == widget.post?.id){
                 ApplicationStatus status = ApplicationStatus.underReview;
-                if (student["application_status"] == "accepted") {
+                if (submission["application_status"] == "accepted") {
                   status = ApplicationStatus.accepted;
-                } else if (student["application_status"] == "under_review") {
+                } else if (submission["application_status"] == "under_review") {
                   status = ApplicationStatus.underReview;
-                } else if (student["application_status"] == "denied") {
+                } else if (submission["application_status"] == "denied") {
                   status = ApplicationStatus.denied;
                 }
-                students.add(Submission(
-                    student.id,
-                    student["name"],
-                    student["email"],
-                    student["w1_title"],
-                    student["w1_company"],
-                    student["w1_start"],
-                    student["w1_end"],
-                    student["w1_desc"],
-                    student["w2_title"],
-                    student["w2_company"],
-                    student["w2_start"],
-                    student["w2_end"],
-                    student["w2_desc"],
-                    student["e1_name"],
-                    student["e1_start"],
-                    student["e1_grad"],
-                    student["e1_degree"],
-                    student["e1_major"],
-                    student["e1_gpa"],
-                    student["e2_name"],
-                    student["e2_start"],
-                    student["e2_grad"],
-                    student["e2_degree"],
-                    student["e2_major"],
-                    student["e2_gpa"],
-                    student["skills"],
-                    student["linkedin_url"],
+                submissions.add(Submission(
+                    submission.id,
+                    submission["post"],
+                    submission["name"],
+                    submission["email"],
+                    submission["w1_title"],
+                    submission["w1_company"],
+                    submission["w1_start"],
+                    submission["w1_end"],
+                    submission["w1_desc"],
+                    submission["w2_title"],
+                    submission["w2_company"],
+                    submission["w2_start"],
+                    submission["w2_end"],
+                    submission["w2_desc"],
+                    submission["e1_name"],
+                    submission["e1_start"],
+                    submission["e1_grad"],
+                    submission["e1_degree"],
+                    submission["e1_major"],
+                    submission["e1_gpa"],
+                    submission["e2_name"],
+                    submission["e2_start"],
+                    submission["e2_grad"],
+                    submission["e2_degree"],
+                    submission["e2_major"],
+                    submission["e2_gpa"],
+                    submission["skills"],
+                    submission["linkedin_url"],
                     status));
               }
             }
@@ -90,12 +91,12 @@ class _ViewApplicantsState extends State<ViewApplicants> {
                       controller: _scrollController,
                       child: ListView.builder(
                           controller: _scrollController,
-                          itemCount: students.length,
+                          itemCount: submissions.length,
                           itemBuilder: (context, index) {
                             return ListTile(
-                              title: Text(students[index].name),
-                              subtitle: Text(students[index].w1Title + "\n"
-                              + students[index].w1Desc),
+                              title: Text(submissions[index].name),
+                              subtitle: Text(submissions[index].w1Title + "\n"
+                              + submissions[index].w1Desc),
                               trailing: ElevatedButton(
                                 onPressed: () {
                                   Navigator.pushNamed(context, "/default");

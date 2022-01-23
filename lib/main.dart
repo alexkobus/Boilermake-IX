@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:thoughtify/models/resume.dart';
-import 'package:thoughtify/pages/import_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'package:flutter/material.dart';
 import 'package:thoughtify/models/post.dart';
-import 'package:thoughtify/models/user.dart';
+import 'package:thoughtify/models/submission.dart';
+import 'package:thoughtify/pages/import_pages.dart';
+
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,9 +36,7 @@ class MyApp extends StatelessWidget {
         "/signupErrorPhone": (context) => Signup(errorState: 4),
         "/student_home": (context) => StudentHome(),
         "/application": (context) => Application(post: Post("default ID - likely not on Firestore", "default@default.com","Professor", "default title", "default description")),
-        "/statusAccepted": (context) => Status(acceptanceStatus: ApplicationStatus.accepted),
-        "/statusInprogress": (context) => Status(acceptanceStatus: ApplicationStatus.underReview),
-        "/statusdenied": (context) => Status(acceptanceStatus: ApplicationStatus.denied),
+        "/status": (context) => Status(submission: Submission("default", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ApplicationStatus.underReview)),
         "/profile": (context) => Profile(),
         "/verify": (context) => Verify(phoneNum: "+12222222222", errorState: false, role: "Student"),
         "/verifyError": (context) => Verify(phoneNum: "+12222222222", errorState: true, role: "Student"),
