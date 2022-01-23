@@ -336,10 +336,10 @@ class _ApplicationState extends State<Application> {
                     ElevatedButton(
                       onPressed: () {
                         apply(widget.post?.id, FirebaseAuth.instance.currentUser?.displayName, FirebaseAuth.instance.currentUser?.email, wtController.text, wcController.text, wdController.text,
-                        wsdController.text, wedController.text, uController.text, usdController.text, uedController.text,
-                        udController.text, umController.text, gpaController.text, sController.text, linController.text,wt2Controller.text, wc2Controller.text, wd2Controller.text,
-                            wsd2Controller.text, wed2Controller.text, u2Controller.text, usd2Controller.text, ued2Controller.text,
-                            ud2Controller.text, um2Controller.text, gpa2Controller.text);
+                        wsdController.text, wedController.text,wt2Controller.text, wc2Controller.text, wd2Controller.text,
+                            wsd2Controller.text, wed2Controller.text, uController.text, usdController.text, uedController.text,
+                        udController.text, umController.text, gpaController.text,u2Controller.text, usd2Controller.text, ued2Controller.text,
+                          ud2Controller.text, um2Controller.text, gpa2Controller.text, sController.text, linController.text, );
                       },
                       child: const Text('Send Application'),
                     ),
