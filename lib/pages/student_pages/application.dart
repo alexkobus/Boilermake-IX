@@ -80,8 +80,10 @@ class _ApplicationState extends State<Application> {
       String? e2Degree, String? e2Major, String? e2GPA, String? skills, String? linkedInUrl) {
 
 
-    CollectionReference resume = FirebaseFirestore.instance.collection('posts').doc(postId).collection('students');
-    resume.add({
+    CollectionReference submissions = FirebaseFirestore.instance.collection('submissions');
+    submissions.add({
+      'post': postId,
+
       'name': name,
       'email': email,
 

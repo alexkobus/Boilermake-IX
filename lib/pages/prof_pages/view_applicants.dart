@@ -15,14 +15,14 @@ class _ViewApplicantsState extends State<ViewApplicants> {
 
   final ScrollController _scrollController = ScrollController();
 
+  final Stream<QuerySnapshot> _submissionsStream =
+    FirebaseFirestore.instance.collection('submissions').snapshots();
+
   @override
   Widget build(BuildContext context) {
-    Stream<QuerySnapshot> _postsStream =
-    FirebaseFirestore.instance.collection('posts')
-        .doc(widget.post!.id).collection('students').snapshots();
 
     return StreamBuilder<QuerySnapshot> (
-        stream: _postsStream,
+        stream: _submissionsStream,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           students.clear();
           if (snapshot.data != null) {
